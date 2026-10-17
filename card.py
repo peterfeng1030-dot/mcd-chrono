@@ -10,7 +10,7 @@ from html import escape
 
 from features import SLOTS
 
-REPO_URL = "https://github.com/peterfeng030-dot/mcd-chrono"
+REPO_URL = "https://github.com/peterfeng1030-dot/mcd-chrono"
 
 DISCLAIMER = (
     "本鉴定由 mcd-chrono 自动生成，仅供娱乐，基于你本人的麦当劳订单时间数据，"
