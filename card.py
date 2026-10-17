@@ -229,7 +229,7 @@ def render_card(result: dict) -> str:
 
 
 def render_report(result: dict) -> str:
-    """out/chrono_report.html：完整页 = 卡片 + 附录（T1-T10 数值表 + 判定链过程）。"""
+    """out/chrono_report.html：完整页 = 卡片 + 选券块 + 附录（T1-T10 数值表 + 判定链过程）。"""
     f, p = result["features"], result["persona"]
     rows = [
         ("T1 五时段分布", _fmt_t1(f.get("t1"))),
@@ -253,6 +253,7 @@ def render_report(result: dict) -> str:
     )
     return _page(
         _card(result)
+        + _coupon_block(result)
         + '<div class="appendix">'
         + '<h2 class="block-title">附录一 · 十项特征数值</h2>'
         + f"<table>{table}</table>"
@@ -268,7 +269,58 @@ padding:26px 44px 30px;box-shadow:0 8px 32px rgba(28,32,36,.14)}
 .appendix td.k{color:var(--sub)}
 .appendix td.v{text-align:right;font-variant-numeric:tabular-nums}
 .chain-row{font-size:13px;color:var(--sub);line-height:1.9}
+.coupon{width:750px;margin:20px auto 0;background:var(--paper);border-radius:16px;
+padding:26px 44px 26px;box-shadow:0 8px 32px rgba(28,32,36,.14);border-top:4px solid var(--gold)}
+.coupon .block-title{margin-bottom:16px}
+.cp-item{background:#FFFFFF;border:1px solid #EFE8D8;border-radius:12px;padding:14px 16px;
+margin-bottom:12px}
+.cp-intro{font-size:13.5px;color:var(--ink);line-height:1.8;background:#FFF7DF;
+border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:14px}
+.cp-head{display:flex;align-items:baseline;gap:10px}
+.cp-name{font-size:17px;font-weight:800;color:var(--ink);line-height:1.4;flex:1}
+.cp-badge{flex:none;font-size:11px;color:#5B4A0F;background:#FFEBB8;border-radius:999px;
+padding:3px 10px;letter-spacing:1px}
+.cp-why{font-size:13px;color:var(--sub);line-height:1.75;margin-top:8px}
+.cp-tag{font-size:11px;color:#8A6A12;margin-top:6px;letter-spacing:1px}
+.cp-caution{font-size:11.5px;color:var(--sub);line-height:1.7;padding-top:6px}
+.cp-src{font-size:11px;color:var(--sub);margin-top:10px;line-height:1.7}
 """,
+    )
+
+
+def _coupon_block(result: dict) -> str:
+    """选券块：把人格翻译成「这几张券为什么适合你」。
+
+    只出现在 report 页，卡片（分享图）保持干净——卡片是「我是谁」，报告才是「我该用哪张」。
+    没有券、没开选券、或一条都没命中时整块不出现，绝不硬凑。
+    """
+    recs = result.get("coupons") or []
+    if not recs:
+        return ""
+    items = []
+    for r in recs:
+        badge = f'<span class="cp-badge">{_e(r.get("label") or "可领")}</span>' if r.get("label") else ""
+        items.append(
+            '<div class="cp-item">'
+            f'<div class="cp-head"><div class="cp-name">{_e(r["name"])}</div>{badge}</div>'
+            f'<div class="cp-tag">命中：{_e(r.get("matched", "—"))}</div>'
+            f'<div class="cp-why">{_e(r.get("note", ""))}</div>'
+            "</div>"
+        )
+    src = (
+        "券来源：本机内置样例（2026-10-17 实测抓取的券名）"
+        if result.get("source") == "demo"
+        else "券来源：你的账号当前可领券"
+    )
+    return (
+        '<div class="coupon">'
+        '<h2 class="block-title">券 · 为什么这几张适合你</h2>'
+        f'<div class="cp-intro">{_e(result.get("coupon_why", ""))}</div>'
+        + "".join(items)
+        + f'<div class="cp-caution">{_e(result.get("coupon_caution", ""))}</div>'
+        + f'<div class="cp-src">{_e(src)}。匹配依据只是券名里的品类与促销字样，'
+        "面额、门槛、有效期以麦当劳 App 为准。本项目只推荐，不代领、不代下单。</div>"
+        + "</div>"
     )
 
 
@@ -343,5 +395,16 @@ def render_markdown(result: dict) -> str:
         lines.append("- 不可判（时间数据不足）")
     lines += ["", "## 鉴定描述", ""]
     lines += [x for x in (p.get("desc") or [])]
+    recs = result.get("coupons") or []
+    if recs:
+        lines += ["", "## 券 · 为什么这几张适合你", ""]
+        if result.get("coupon_why"):
+            lines += [result["coupon_why"], ""]
+        for r in recs:
+            badge = f"（{r['label']}）" if r.get("label") else ""
+            lines.append(f"- **{r['name']}**{badge} — 命中：{r.get('matched', '—')}。{r.get('note', '')}")
+        if result.get("coupon_caution"):
+            lines.append(f"\n> {result['coupon_caution']}")
+        lines.append("> 本项目只推荐，不代领、不代下单。")
     lines += ["", f"**判词：{p['verdict']}**", "", "---", "", DISCLAIMER]
     return "\n".join(lines)

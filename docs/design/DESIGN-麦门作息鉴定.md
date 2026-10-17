@@ -53,7 +53,7 @@ fixture 确定性生成（fixtures/make_fixture.py L85-162）。
                                   →（--share）终端分享文案
 ```
 
-### 2.2 模块契约（六个模块 + fixtures）
+### 2.2 模块契约（七个模块 + fixtures）
 
 | 模块 | 对外接口 | 输入 → 输出 | 来源 |
 |---|---|---|---|
@@ -61,6 +61,7 @@ fixture 确定性生成（fixtures/make_fixture.py L85-162）。
 | fetch.py | `fetch_orders(client)` / `normalize_order(summary, detail)` / `load_demo(profile)` / `_first` / `_dig` / `_as_list` / `_to_float` | client → 规范化订单 | 平移 `mcaudit/mcaudit.py` L36-41、L44-105、L133-184、L216-222（剔除营养函数） |
 | features.py | `extract(orders) -> dict` | 规范化订单列表 → 特征字典 | 新增 |
 | persona.py | `judge(features) -> dict` / `THRESHOLDS` | 特征字典 → 人格四件套 | 新增 |
+| coupons.py | `rank(key, coupons, features)` / `why_for` / `caution_for` / `classify` / `normalize` / `fetch_coupons` / `load_demo` | 人格键 + 券列表 → 带理由的推荐 | 新增（§15） |
 | card.py | `render_card(result)` / `render_report(result)` / `render_markdown(result)` | 结果字典 → HTML/MD 字符串 | 新增（CSS 先例 report.py L157-196） |
 | main.py | `main() -> int`（CLI 入口） | argparse → 编排 + 落盘 | 自 mcaudit.py L257-303 精简改写 |
 
@@ -107,7 +108,10 @@ fixture 确定性生成（fixtures/make_fixture.py L85-162）。
 ```python
 {"source": "demo" | "live",   # 数据来源；"demo" → 卡片右上角 45° 水印（§5）
  "features": {特征字典},       # features.extract 输出（本节上文）
- "persona": {人格字典}}        # persona.judge 输出（本节上文）
+ "persona": {人格字典},        # persona.judge 输出（本节上文）
+ # 以下三键仅在选券命中时出现（§15）；缺省时报告页少一块，卡片不受影响
+ "coupons": [{name, label, tags, hit, score, matched, note}, …],
+ "coupon_why": str, "coupon_caution": str}
 ```
 
 **时间解析**：features.py 内置 `parse_time`（先例 `mcaudit/audit.py` L22-28 的三格式 +
@@ -269,17 +273,19 @@ THRESHOLDS = {
 ## 6. CLI 契约（main.py）
 
 ```
-python main.py --demo [--sample p1..p8] [--share] [--out DIR]
+python main.py --demo [--sample p1..p8] [--share] [--no-coupons] [--out DIR]
 python main.py --demo --list-samples
-python main.py --live [--dump PATH] [--share] [--out DIR]
+python main.py --live [--dump PATH] [--share] [--no-coupons] [--out DIR]
 ```
 
 | 参数 | 语义 | 备注 |
 |---|---|---|
-| `--demo` / `--live` / `--list-samples` | 互斥必选（argparse mutually exclusive group） | |
+| `--demo` / `--live` | 互斥，二选一 | |
+| `--list-samples` | 单独开关，列出八份样例对应的人格 | 可与 `--demo` 同给，优先短路（不报互斥错） |
 | `--sample` | demo 样例类型 p1-p8，与八人格一一对应，默认 p3；旧名 normal=p3、heavy=p2 仍可用 | 与 `--live` 同给：stderr 提示后忽略 |
 | `--dump PATH` | 仅 live：落盘 JSON（见 §6.1） | 字段核对机制（A4） |
 | `--share` | 生成后向 stdout 打印分享文案（§6.2） | demo/live 均可用 |
+| `--no-coupons` | 关掉选券块（§15） | 默认开：demo 用 `fixtures/demo_coupons.json`，live 调 `available-coupons` |
 | `--out DIR` | 输出目录，默认 `./out` | |
 
 退出码：`0` 成功；`2` MCP 连接/Token 失败（先例 mcaudit.py L275-279）；无订单时
@@ -384,9 +390,11 @@ sys.path 后跑 unittest）。
 | test_persona.py | 八人格各 ≥1 例正命中 + 关键阈值边界（T4=0.25 命中 / 0.2499 不命中）；优先级（P1∧P2 同满足→P1）；n=4→安慰卡、n=5→进链；T7=None→P1 跳过落 P2；None 操作数判否 | A2、A3 |
 | test_card_offline.py | 对生成的三份 HTML 断言源码无 `http://`/`https://`（A5 机器判据）；demo 水印存在、live 无水印 | A5 |
 | test_fixtures.py | 八份样例各命中对应人格（防参数漂移滑去上游人格）；n ≥ 5 不进安慰卡；order_time 有序；旧名 normal/heavy 指向 p3/p2 | A1、A2 |
+| test_coupons.py | 券名分类（4 张实测券 → 期望标签）；九个人格键各 ≥1 张且有理由；同输入同输出（含逆序输入）；空券池与全不命中返回空；`matched` 标签必须落在该人格权重表内；normalize 三种畸形输入；卡片不含券名/报告含券块/`--no-coupons` 时整块消失；**源码断言：coupons.py 内不得出现 `auto-bind-coupons` / `create-order` / `draw-lottery` / `mall-create-order`** | A8 |
 
 收尾集成（主 agent 侧，一次）：A1 九跑（`--demo`、`--demo --sample p1`…`p8`、人格两两比对）+
-A3（4 单样例）+ A4（真实 Token，10-18 回传后）。单元文件不转集成、不挂门禁。
+A3（4 单样例）+ A4（真实 Token，已跑通）+ A8（八人格券推荐 + live 券列表 + 报告截图）。
+单元文件不转集成、不挂门禁。
 
 ## 10. 验收映射表（REQ A1-A7 ← 设计章节 ← 批次条目）
 
@@ -399,6 +407,7 @@ A3（4 单样例）+ A4（真实 Token，10-18 回传后）。单元文件不转
 | A5 | 卡片离线（源码无 http/https） | §5 规格、§9 test_card_offline | E4/E9 |
 | A6 | 交付物齐备合规 | §8 文件清单（SKILL/README/CONTEST_DECLARATION/MCP_INTEGRATION/mcp-config/workbuddy/.gitignore） | E6/E7 |
 | A7 | 8 条判词过用户验收（10-18 专场） | §4.2 v0 基调稿 + 合规线 | E3 |
+| A8 | 鉴定后给出券推荐，且只读不代领 | §15 全章、§2.2 coupons 契约、§9 test_coupons | E10 |
 
 REQ §5 两处口径的落点：修订①（T9 分钟制环形）→ §3.2；修订②（21-5 跨零点归属）→ §3.1。
 
@@ -431,7 +440,8 @@ REQ §5 两处口径的落点：修订①（T9 分钟制环形）→ §3.2；修
 - 不做复合人格、积分彩蛋、营养维度（v1 砍项）。
 - 文案不做健康评价、不做饮食建议、不出现「应不应该吃」句式；夜宵人格不写身体后果。
 - 卡片与文案零出现其他品牌。
-- 不触碰优惠券维度人格。
+- **人格判定不引入优惠券维度**：券是判定之后的单向映射（§15），不反过来影响判定。
+  券模块只读——不领券、不下单、不抽奖、不兑换，也不算「能省多少钱」。
 - 不引入任何第三方依赖；不写入 mcaudit 目录任何文件。
 
 ## 13. 用例表（正常 / 边界 / 错误）
@@ -466,10 +476,90 @@ open 项（不阻塞实现，均有明确解决窗口）：
 | O3 | order-list 分页行为未知 | 10-18 --live --dump 回传核对（A4） |
 | O4 | CONTEST_DECLARATION 与官方逐字一致 | 10-19 提交前核对（A6） |
 
+## 15. 券匹配模块（coupons.py，对应 A8）
+
+### 15.1 接口事实（决定了一切设计）
+
+`available-coupons` 不带参数，返回 `{"success": true, "data": [...]}`，每个元素只有四个字段：
+
+| 字段 | 示例 | 可用性 |
+|---|---|---|
+| `couponName` | `人气麦旋风买一送一` | **唯一可用的匹配依据** |
+| `couponImage` | 带 `sign` 的 COS 地址，有时效 | 不落盘、不引用（卡片必须离线） |
+| `couponStatus` | `CAN_GET` | 展示用 |
+| `label` | `可领取` | 展示用 |
+
+没有面额、没有门槛、没有有效期、没有适用门店、没有是否支持外送，**也没有 `couponId`**。
+2026-10-17 22:18 实测一次返回 4 张。结论：匹配只能基于券名文本，不能算金额——
+这既是限制，也是保持诚实的原因（见 §15.4）。
+
+### 15.2 标签体系与人格权重
+
+**促销/品类标签**（`CATEGORY_RULES` / `PROMO_RULES`，按关键词命中，可多标签共存）：
+
+| 类别 | 标签 | 关键词示例 |
+|---|---|---|
+| 品类 | breakfast / coffee / dessert / snack / drink / main / delivery | 早餐·猪柳蛋·松饼｜美式·拿铁｜麦旋风·新地·派｜薯条·薯饼·鸡块｜可乐·果茶｜巨无霸·板烧·套餐｜外送·麦乐送 |
+| 促销 | free / bogo / discount | 免费·赠｜买一送一·第二份｜元·折·特价·立减 |
+
+**人格权重**（`PERSONA_PREF`，纯数据，改权重不动任何判定逻辑）：
+
+| 人格 | 权重（标签:分值） | 配置理由 |
+|---|---|---|
+| P1 麦门初恋体质 | free 3, discount 3, bogo 2 | 只点同一样，满减要凑单，单品券才是他的 |
+| P2 深夜麦门守护者 | snack 3, dessert 3, drink 2, main 1, discount 1 | 夜里点的是陪着熬夜的小份东西，不是正餐 |
+| P3 晨间通勤麦 | breakfast 4, coffee 2, discount 1 | 高峰在早上，早餐券是唯一天天用得上的 |
+| P4 卡点特种兵 | main 4, discount 2, snack 1 | 午市那一单要「到点就能用」，不用挑 |
+| P5 麦乐送头号收件人 | delivery 4, main 2, bogo 2 | 外送是主场景；但券面不标是否支持麦乐送，须提示 |
+| P6 下午茶哲学家 | dessert 4, coffee 3, snack 1 | 下午茶点的本来就是甜品与咖啡 |
+| P7 麦门幸运儿 | free 3, bogo 3, discount 2 | 低频，要「一次就能用掉、不用等下一次」 |
+| P8 全麦自由人 | discount 2, free 2, bogo 2, main 1, snack 1 | 无时段偏好，按通用力度配 |
+| SCANT 安慰卡 | free 2, discount 2, bogo 1 | 样本不足以定型，先给一次性的 |
+
+### 15.3 排序与输出契约
+
+`rank(key, coupons, features, top_n=3)`：
+
+1. 每张券按 `sum(权重[tag] for tag in classify(name))` 打分，**只保留 > 0 的**（一条没命中就返回空，不硬凑）。
+2. 排序键 `(-score, name)`——分数降序、券名升序。**逆序输入券列表也必须得到同一结果**（可复现）。
+3. 每条补三个字段：`matched`（**只列与该人格权重表相交的标签**，避免「早餐+正餐」这种自相矛盾的暴露）、
+   `note`（单券一句，取自 `TAG_NOTE[hit[0]]`）、`hit`（相交标签原值，供测试断言）。
+4. 整块开头那句理由由 `why_for(key, features)` 单独产出，引用该人的真实数字（如早餐占比 57%），
+   同一份推荐里只说一次——三张券各复述一遍是排版事故。
+
+### 15.4 三条硬边界
+
+1. **只读。** 只调 `available-coupons`。`auto-bind-coupons` / `create-order` / `draw-lottery` /
+   `mall-create-order` 一个都不碰。`test_coupons.py::TestCompliance` 断言源码里不得出现这四个工具名的
+   字符串字面量——写代码时手滑加进去会红。
+2. **不算金额。** 券没有面额与门槛，任何「省 X 元」都是编的。报告里的话术固定为
+   「命中：{标签}」+ 场景理由，不出现金额承诺。
+3. **卡片不掺券。** 券只进 `chrono_report.html/.md`。卡片回答「我是谁」，混进券就不干净了，
+   且破坏离线分享的纯粹性。`test_coupons.py::TestRender::test_card_has_no_coupon` 守着这条。
+
+### 15.5 降级
+
+| 场景 | 行为 |
+|---|---|
+| `--no-coupons` | 不取券，结果字典无 `coupons` 键，报告页整块消失 |
+| live 取券失败（401/429/网络） | stderr 提示「券列表取不到（…），鉴定结果不受影响」，其余照常 |
+| 券列表为空 / 全部不命中 | 同样不出块。宁可空着，也不推一张对不上的券 |
+| demo 且 `fixtures/demo_coupons.json` 缺失 | 静默跳过（`load_demo` 返回 `[]`） |
+
+### 15.6 demo 券样例
+
+`fixtures/demo_coupons.json` 存的是 **2026-10-17 22:18 用 `available-coupons` 实测抓到的 4 个券名**
+（非编造），字段结构照抄接口。文件内 `_note` 已写明「券会变，仅供离线演示」。
+报告页底部也会按来源打不同的话：demo 说「本机内置样例」，live 说「你的账号当前可领券」。
+
 ## 变更记录
 
 - 2026-10-16 v1.0：initial 轮定稿。REQ §5 两处口径定死（§3.1 / §3.2）；八人格阈值与
   v0 文案；卡片版式；CLI 契约；降级路径；测试策略；验收映射。
+- 2026-10-17 v1.1：卡片新增 24 小时热力条（段③b），六段版式变七段；样例扩到八份（p1→p8）；
+  `--list-samples` 改为独立开关；人格文案定稿（P1 麦门初恋体质 / P5 麦乐送头号收件人 / P4 新判词）。
+- 2026-10-17 v1.2：新增 §15 券匹配模块（`coupons.py`），结果字典扩三个可选键，CLI 加 `--no-coupons`，
+  测试从 70 例扩到 91 例（新增 `test_coupons.py` 20 例），验收新增 A8。
 - 2026-10-17 v1.1：评审修复轮（批次记录 §3 发现 1-6）：免责锚点改指 §5 内文案块；T9 上界
   表述改「均匀分布理论值（量尺参考）」并注明 ≈455/≈509 极值、不截断；T8 与 span_days
   可判口径明写；normal 早餐权重 36→45（t3_ratio≈0.45）并补两 profile T7<0.40 前提；

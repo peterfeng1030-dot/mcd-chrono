@@ -1,0 +1,27 @@
+{
+  "_note": "2026-10-17 22:18 用 available-coupons 实测抓到的券名（当时 4 张全部可领）。券本身随时间变化，此文件只为让 --demo 能离线演示「鉴定 + 选券」，不代表任何时点的真实库存。字段结构与接口一致：couponName / couponStatus / label。",
+  "captured_at": "2026-10-17T22:18:24+08:00",
+  "source": "available-coupons",
+  "coupons": [
+    {
+      "couponName": "巧克力味厚松饼猪柳蛋套餐",
+      "couponStatus": "CAN_GET",
+      "label": "可领取"
+    },
+    {
+      "couponName": "免费脆薯饼",
+      "couponStatus": "CAN_GET",
+      "label": "可领取"
+    },
+    {
+      "couponName": "人气麦旋风买一送一",
+      "couponStatus": "CAN_GET",
+      "label": "可领取"
+    },
+    {
+      "couponName": "9.9元中杯冰美式",
+      "couponStatus": "CAN_GET",
+      "label": "可领取"
+    }
+  ]
+}

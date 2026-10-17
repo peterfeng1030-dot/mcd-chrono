@@ -6,6 +6,7 @@
     python main.py --live                          调麦当劳 MCP 拉真实订单（需 MCD_MCP_TOKEN）
     python main.py --live --dump raw.json          额外落盘原始返回（字段核对，§6.1）
     python main.py --demo --share                  追加打印分享文案
+    python main.py --demo --no-coupons             只鉴定，不推荐券
 
 退出码：0 成功；2 MCP 连接/Token 失败。
 """
@@ -18,6 +19,7 @@ import sys
 from pathlib import Path
 
 import card
+import coupons
 import features
 import persona
 from fetch import DEMO_PROFILES, fetch_orders, load_demo
@@ -64,6 +66,9 @@ def _summary(result: dict, paths: list[Path]) -> None:
     print(f"  {p['emoji']}  {p['title']}")
     print(f"     样本 {f['n']} 单 · 麦龄 {m['span_days']} 天 · 最忠门店 {m['top_store'] or '—'}")
     print(f"     判词：{p['verdict']}")
+    recs = result.get("coupons") or []
+    if recs:
+        print(f"     选券：{len(recs)} 张适合你 —— {recs[0]['name']}")
     print()
     for path in paths:
         print(f"  已生成  {path.resolve()}")
@@ -89,12 +94,15 @@ def run(args) -> int:
         return 0
 
     # ---- 数据源（--demo / --live 互斥必选）
+    coupon_pool: list[dict] = []
     if args.demo:
         if args.dump:
             print("--dump 仅 live 模式生效，已忽略。", file=sys.stderr)
         data = load_demo(args.sample or "p3")
         orders = data["orders"]
         source = "demo"
+        if not args.no_coupons:
+            coupon_pool = coupons.load_demo()
     else:
         from mcp_client import McpError, from_env
 
@@ -112,6 +120,12 @@ def run(args) -> int:
             raise SystemExit("没有取到订单。若账号无历史订单，可先用 --demo 查看效果。")
         print(f"取到 {len(orders)} 笔。", file=sys.stderr)
         source = "live"
+        if not args.no_coupons:
+            try:
+                coupon_pool = coupons.fetch_coupons(client)
+                print(f"取到 {len(coupon_pool)} 张可领券。", file=sys.stderr)
+            except McpError as exc:  # 券挂了不影响鉴定本身
+                print(f"券列表取不到（{exc}），鉴定结果不受影响。", file=sys.stderr)
         if args.dump:
             dump = {
                 "source": "live",
@@ -123,10 +137,16 @@ def run(args) -> int:
             )
             print(f"原始结构已保存至 {args.dump}", file=sys.stderr)
 
-    # ---- 管道：特征 → 人格 → 组装
+    # ---- 管道：特征 → 人格 → 券匹配 → 组装
     f = features.extract(orders)
     p = persona.judge(f)
     result = {"source": source, "features": f, "persona": p}
+    if coupon_pool:
+        recs = coupons.rank(p["key"], coupon_pool, f)
+        if recs:
+            result["coupons"] = recs
+            result["coupon_why"] = coupons.why_for(p["key"], f)
+            result["coupon_caution"] = coupons.caution_for(p["key"])
 
     if f["n_timevalid"] == 0:
         print(
@@ -165,6 +185,11 @@ def main() -> int:
         help="样例类型（配合 --demo）：p1-p8 对应八个人格，默认 p3；旧名 normal=p3、heavy=p2",
     )
     ap.add_argument("--dump", metavar="PATH", help="仅 live：落盘 JSON（含 raw_sample 首条原始样本）")
+    ap.add_argument(
+        "--no-coupons",
+        action="store_true",
+        help="不做选券推荐（默认会按人格给 1-3 张券的理由，只读不代领）",
+    )
     ap.add_argument("--share", action="store_true", help="生成后向 stdout 打印分享文案")
     ap.add_argument("--out", default=str(OUT_DIR), help="输出目录，默认 ./out")
     args = ap.parse_args()

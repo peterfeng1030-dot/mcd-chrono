@@ -9,7 +9,7 @@
 
 同样一份套餐，早上七点半吃和凌晨一点吃，说的是两种人生。mcd-chrono 调麦当劳官方 MCP
 拉你自己的历史订单，只看一件事：你**什么时候**下的单。然后给出一张鉴定卡，一个称号，
-一句判词。
+一句判词。报告页里还会告诉你，那几张可领的券为什么适合你这种人。
 
 一行命令，不需要 Token 也能先看效果。
 
@@ -50,6 +50,30 @@ python main.py --demo
 | <img src="docs/assets/card-morning.png" width="330" alt="晨间通勤麦"> | <img src="docs/assets/card-night.png" width="330" alt="深夜麦门守护者"> |
 | 🌅 **晨间通勤麦** · 夜间订单 8.1% | 🌙 **深夜麦门守护者** · 夜间订单 51.7% |
 
+## 鉴定之后：哪张券适合你
+
+人格不是标签，它是「你在什么场景会下单」的结论。既然知道了场景，就能反向挑券：
+不是把能领的券全列一遍，而是告诉你**这几张为什么适合你这种人**。
+
+<img src="docs/assets/coupon-block.png" width="100%" alt="选券块：券名、命中依据、为什么适合">
+
+上面这张是真实输出（`--demo` 跑出来的报告页节选）。三条线各司其职：
+
+- **整块开头**说的是这个人为什么导向这类券——用的是他的真实数字，比如「早餐时段占比 57%」。
+- **每张券**只写一句「它落在你的哪个偏好里」，命中的标签直接摊开给你看，不做黑箱。
+- **底部**是这条线不能越的界：券的面额、门槛、有效期以麦当劳 App 为准。
+
+三件事必须讲清楚：
+
+1. **只查不领。** 全程只调 `available-coupons`（查可领券），不调 `auto-bind-coupons`（自动领取），
+   更不碰下单和抽奖接口。`test_coupons.py` 里有一条源码断言守着这件事。
+2. **不算能省多少钱。** 券接口只返回券名、图片、状态、标签四个字段，没有面额、没有门槛、
+   没有有效期。所以这里的匹配依据**只能是券名里的品类与促销字样**，报告里也这么写。
+   假装算得出省多少，就是编数据。
+3. **卡片里没有券。** 分享图只回答「我是谁」，券只出现在报告页。混在一起，那张图就不干净了。
+
+不想看券就加 `--no-coupons`。
+
 ## 快速开始
 
 只需要 Python 3.10+，不装任何第三方包。
@@ -59,17 +83,21 @@ python main.py --demo                    # 默认出 p3 晨间通勤麦
 python main.py --demo --sample p4        # 换成指定人格的样例
 python main.py --demo --list-samples     # 看八份样例分别是哪种人格
 python main.py --demo --share            # 顺便输出分享文案
+python main.py --demo --no-coupons       # 只鉴定，不推荐券
 ```
 
 `--sample` 收 `p1` 到 `p8`，与八个人格一一对应，八份样例都在 `fixtures/` 下。
 旧名 `normal` / `heavy` 仍然可用，分别指向 `p3` 和 `p2`。
+
+选券默认开着：`--demo` 用 `fixtures/demo_coupons.json`（2026-10-17 实测抓到的券名），
+`--live` 用你自己账号当前可领的券。券取不到不影响鉴定，只是报告里少一块。
 
 运行完在 `out/` 下得到三个文件：
 
 | 文件 | 用途 |
 |---|---|
 | `chrono_card.html` | 只有卡片，直接截图发出去 |
-| `chrono_report.html` | 完整报告，含判定依据明细 |
+| `chrono_report.html` | 完整报告，含判定依据明细与选券块 |
 | `chrono_report.md` | 纯文本版 |
 
 ## 用你自己的真实数据
@@ -101,7 +129,7 @@ python main.py --live
 「原来我都在这个点吃」。
 
 报告页里还有判定依据明细：样本量、区间、累计消费、命中依据、峰值时刻、最忠门店。
-所有数字都可追溯，没有一句是编的。
+所有数字都可追溯，没有一句是编的。选券块也在报告页，卡片里没有。
 
 ## 用了哪些 MCP 工具
 
@@ -109,9 +137,14 @@ python main.py --live
 |---|---|---|
 | `order-list` | 拉近一年历史订单（时间、类型、金额、门店） | 必需 |
 | `query-order` | 逐笔补明细，算单品集中度 | 已接入，单笔失败自动降级 |
+| `available-coupons` | 查当前可领的券，做人格匹配 | 仅 `--live`，失败自动跳过 |
 
 `order-list` 定骨架，`query-order` 补细节。一年一百多单也就一百多次调用，离每分钟
 600 次的限额很远。单笔明细拉不到时自动降级，不影响其余七条判定线。
+
+**刻意没有接入的工具**：`auto-bind-coupons`（自动领券）、`create-order`（下单）、
+`draw-lottery`（抽奖）、`mall-create-order`（商城兑换）。这个项目的边界是「告诉你怎么看自己」，
+不是替你把钱花掉。
 
 ## 目标用户
 
@@ -128,31 +161,41 @@ mcd-chrono/
 ├── fetch.py                   取数与字段容错
 ├── features.py                T1~T10 特征提取
 ├── persona.py                 八人格判定引擎与全部文案
+├── coupons.py                 券匹配：券名 → 标签 → 人格偏好排序（只读）
 ├── card.py                    卡片 / 报告 / Markdown 渲染
-├── fixtures/                  八份构造样例（p1→P1 … p8→P8）及其生成器
+├── fixtures/                  八份构造样例（p1→P1 … p8→P8）、券样例及其生成器
 ├── scripts/
 │   ├── check_token.py         Token 验证与本地保存
 │   └── build_wall.py          八人格墙生成器（README 首图的数据源）
 ├── docs/
 │   ├── requirements/          需求文档
 │   ├── design/                设计文档
-│   ├── assets/                卡片示例图与八人格墙
-│   └── batches/tests/         单元测试（70 例：判定链、特征、卡片离线渲染、样例归宿）
+│   ├── assets/                卡片示例图、八人格墙、选券块截图
+│   └── batches/tests/         单元测试（91 例：判定链、特征、卡片离线渲染、样例归宿、券匹配）
 └── out/                       输出目录（不提交）
 ```
 
 ## Roadmap
 
-比赛版本只做鉴定。下一步打算做的是把鉴定结果接上券的匹配：不是告诉你「这些券能省多少」，
-而是告诉你「这张券为什么适合你这种人」。夜宵党需要的是免配送费，通勤党需要的是早餐套餐，
-周末宅家的人需要的是外送满减，三类人对同一张券的反应完全不同。技术上用
-`available-coupons` 和 `calculate-price` 就能做，放在比赛之后。
+已经做完的是「鉴定 + 选券」：券只按券名里的品类与促销字样去对人格的时段偏好，
+不算金额、不代领、不下单——因为券接口给不出面额和门槛，而编一个出来就等于骗人。
+
+再往前一步想做的事情，都需要更硬的数据支撑，所以先写在这里不当成承诺：
+
+- **券的可用性校验。** 现在不知道一张券能不能用在你常去的那家店、那个时段。
+  真要做，得走 `query-store-coupons`（门槛 `<storeCode, orderType>`），
+  还要先拿到定位与门店编码，成本比现在这套高一个量级。
+- **算清一张券值多少。** 需要 `query-meals` 的餐品价格配 `calculate-price` 逐单试算，
+  才知道「这张券对这个人到底省几块」。这已经不是文案问题，是计算问题。
+- **把年份做成时间轴。** 现在只有一张卡，一年里的转折点（比如某个季度突然开始点夜宵）
+  还没被讲出来。
 
 ## 免责声明
 
 本项目为麦当劳程序员创意开发大赛参赛作品，由参赛者独立开发，**非麦当劳官方产品**，
 未获麦当劳授权或认可。鉴定结果基于你自己的历史订单时间，仅供娱乐与回顾，不构成营养、
-医疗或其他专业建议。餐品信息、价格及供应状态以麦当劳官方渠道的实时结果为准。
+医疗或其他专业建议。券信息以麦当劳 App 实时结果为准，本项目只做展示与匹配，
+不代领、不代下单、不参与任何交易。
 
 ---
 
@@ -174,6 +217,12 @@ For your own data, get a free MCP token at [open.mcd.cn/mcp](https://open.mcd.cn
 ```bash
 python scripts/check_token.py            # verify and store the token locally
 python main.py --live                    # run on your real order history
+```
+
+The report page also matches your chronotype against the coupons you can currently claim
+(`available-coupons`) and explains **why** each one fits your ordering window. It is
+read-only: this project never claims a coupon, never places an order, and never estimates
+savings it cannot verify. Pass `--no-coupons` to turn the block off.
 ```
 
 Eight personas, all rules public in `persona.py`.
