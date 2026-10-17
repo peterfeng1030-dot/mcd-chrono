@@ -48,7 +48,7 @@ python main.py --demo
 | 早上七点半下单的人 | 晚上十一点下单的人 |
 |---|---|
 | <img src="docs/assets/card-morning.png" width="330" alt="晨间通勤麦"> | <img src="docs/assets/card-night.png" width="330" alt="深夜麦门守护者"> |
-| 🌅 **晨间通勤麦** · 夜间订单 8.0% | 🌙 **深夜麦门守护者** · 夜间订单 51.7% |
+| 🌅 **晨间通勤麦** · 夜间订单 8.1% | 🌙 **深夜麦门守护者** · 夜间订单 51.7% |
 
 ## 快速开始
 
@@ -131,7 +131,8 @@ mcd-chrono/
 ├── card.py                    卡片 / 报告 / Markdown 渲染
 ├── fixtures/                  八份构造样例（p1→P1 … p8→P8）及其生成器
 ├── scripts/
-│   └── check_token.py         Token 验证与本地保存
+│   ├── check_token.py         Token 验证与本地保存
+│   └── build_wall.py          八人格墙生成器（README 首图的数据源）
 ├── docs/
 │   ├── requirements/          需求文档
 │   ├── design/                设计文档
@@ -144,7 +145,7 @@ mcd-chrono/
 
 比赛版本只做鉴定。下一步打算做的是把鉴定结果接上券的匹配：不是告诉你「这些券能省多少」，
 而是告诉你「这张券为什么适合你这种人」。夜宵党需要的是免配送费，通勤党需要的是早餐套餐，
-周末宅家派需要的是外送满减，三类人对同一张券的反应完全不同。技术上用
+周末宅家的人需要的是外送满减，三类人对同一张券的反应完全不同。技术上用
 `available-coupons` 和 `calculate-price` 就能做，放在比赛之后。
 
 ## 免责声明

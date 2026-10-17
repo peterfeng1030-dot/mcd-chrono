@@ -39,6 +39,14 @@
 
 2026-10-17 晚 live 实测（A4）：用户真实账号经 check_token.py + main.py --live 全链跑通——Token 有效、MCP 握手成功、订单拉取/字段容错/门店名解析全部正确（raw_sample.json 十字段与容错层对齐）；账号仅 1 笔订单（2026-05-15 板烧鸡腿堡），正确触发安慰卡，A3 在 live 模式顺带验证。O3 关闭：探针（.thincoder/tmp/probe_orderlist_schema.py）读出 order-list 的 inputSchema 为空对象——不收任何参数、无分页面，单次调用即全量；mall-order-list（lastId/size 分页）是商城兑换单工具，不在主链路。A4 真实数据人格判定未行使（样本 <5），如需闭环须换 ≥5 单账号实测，可选。
 
+2026-10-17 晚 A7 文案专场（用户验收过）：P1 巨无霸钉子户→麦门初恋体质、P5 周末宅家派→麦乐送头号收件人、P4 卡点特种兵判词重写（称号保留）；其余五人格+安慰卡文案用户默认通过。落点 persona.py + README 人格表，70/70 断言复绿 + P4/P5 成品卡重出验证，commit cb898bc 已推。A7 关闭。附注三：用户/WorkBuddy 侧并行推进未入档——发布链（4 提交推送、CONTEST_DECLARATION/MCP_INTEGRATION/SKILL.md/README 已在仓、repo=peterfeng1030-dot/mcd-chrono）、24h 热力条、八人格专属 fixture（--sample pN）、check_token.py/.env 链、test_fixtures.py（66→70 断言）；主 agent 逐项核实（远端同步、凭据零泄露、66→70 复绿、称号 README 对齐），O1 关闭（仓库地址已填）。§4 批准以用户事实发布 + 2026-10-17「我觉得 ok」终审文案为准记录。
+
+2026-10-17 晚 O4 关闭：CONTEST_DECLARATION.md 与官方模板（M-China/mcd-developer-innovation-challenge main 分支，gh-proxy 镜像拉取）逐字节比对一致——1522=1522 字节、identical True、零行差异；声明三条款（无凭据/占位符/无他人信息）对仓库实况复核属实。直连 github.com 超时属网络环境问题，不影响比对结论。
+
+2026-10-17 晚：用户已提交报名 Issue（原计划 10-20，提前完成）；issue 链接未记录，待用户回传补录。
+
+2026-10-17 晚：报名 Issue 已提交——https://github.com/M-China/mcd-developer-innovation-challenge/issues/830（官方 README 报名格式已核：需【参赛申请】四行格式、标题正文间无换行、链接不用 Markdown 格式；系统将在 Issue 下回复成功/失败通知）。
+
 ## §2 批次任务与设计（eng-designer）
 
 
