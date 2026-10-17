@@ -157,8 +157,19 @@ def normalize_order(summary: dict, detail) -> dict:
 
 # ---------------------------------------------------------------- demo 样例（mcaudit L36-41）
 
-def load_demo(profile: str = "normal") -> dict:
-    path = ROOT / "fixtures" / f"demo_orders_{profile}.json"
+# 八份样例对应八个人格（p1 → P1 … p8 → P8）。
+# normal / heavy 是早期两个样例的旧名，保留映射避免旧命令失效。
+DEMO_ALIASES = {"normal": "p3", "heavy": "p2"}
+DEMO_PROFILES = [f"p{i}" for i in range(1, 9)]
+
+
+def load_demo(profile: str = "p3") -> dict:
+    key = DEMO_ALIASES.get(profile, profile)
+    path = ROOT / "fixtures" / f"demo_orders_{key}.json"
     if not path.exists():
-        raise SystemExit(f"缺少样例文件 {path}，先运行 python fixtures/make_fixture.py")
+        raise SystemExit(
+            f"没有这份样例：{profile}。可选 {' / '.join(DEMO_PROFILES)}"
+            "（旧名 normal=p3、heavy=p2）\n"
+            "若样例文件整体缺失，运行 python fixtures/make_fixture.py 重新生成。"
+        )
     return json.loads(path.read_text(encoding="utf-8"))

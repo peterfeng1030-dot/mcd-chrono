@@ -35,7 +35,7 @@ fixture 确定性生成（fixtures/make_fixture.py L85-162）。
 ### 2.1 数据流总览
 
 ```
---demo:  fixtures/demo_orders_{normal,heavy}.json ──┐
+--demo:  fixtures/demo_orders_{p1..p8}.json ────────┐
                                                     ├→ 订单列表 list[dict]
 --live:  MCP order-list + query-order(逐笔,可失败) ──┘   (normalize_order 结构)
         fetch.py
@@ -269,14 +269,15 @@ THRESHOLDS = {
 ## 6. CLI 契约（main.py）
 
 ```
-python main.py --demo [--sample normal|heavy] [--share] [--out DIR]
+python main.py --demo [--sample p1..p8] [--share] [--out DIR]
+python main.py --demo --list-samples
 python main.py --live [--dump PATH] [--share] [--out DIR]
 ```
 
 | 参数 | 语义 | 备注 |
 |---|---|---|
-| `--demo` / `--live` | 互斥必选（argparse mutually exclusive group，先例 mcaudit.py L259-261） | |
-| `--sample` | demo 样例类型 normal/heavy，默认 normal | 与 `--live` 同给：stderr 提示后忽略 |
+| `--demo` / `--live` / `--list-samples` | 互斥必选（argparse mutually exclusive group） | |
+| `--sample` | demo 样例类型 p1-p8，与八人格一一对应，默认 p3；旧名 normal=p3、heavy=p2 仍可用 | 与 `--live` 同给：stderr 提示后忽略 |
 | `--dump PATH` | 仅 live：落盘 JSON（见 §6.1） | 字段核对机制（A4） |
 | `--share` | 生成后向 stdout 打印分享文案（§6.2） | demo/live 均可用 |
 | `--out DIR` | 输出目录，默认 `./out` | |
@@ -331,9 +332,8 @@ mcaudit 目录只读；下表全部为 mcd-chrono 新建文件。「来源」列
 | features.py | 新增：parse_time + 时段窗 + §3.2 环形统计 + T1-T10 | ≈220 |
 | persona.py | 新增：THRESHOLDS + 八人格四件套 + 安慰卡 + 判定链 | ≈210 |
 | card.py | 新增：三渲染函数 + HTML/CSS 模板（CSS 先例 report.py L157-196） | ≈340 |
-| fixtures/make_fixture.py | 复制 make_fixture.py（172 行）改造：PROFILES 加 weekday 权重、order_type 权重、早餐分钟紧化 | ≈210 |
-| fixtures/demo_orders_normal.json | 生成物（构造数据，note 字段注明） | 生成 |
-| fixtures/demo_orders_heavy.json | 生成物 | 生成 |
+| fixtures/make_fixture.py | 生成器：8 个 profile（星期权重、外卖权重、分钟分布、招牌单品、洗牌轮转菜单、按月撒点） | ≈330 |
+| fixtures/demo_orders_p1.json … p8.json | 生成物，一人格一份（构造数据，note 字段注明） | 8 份生成 |
 | SKILL.md | 改写（触发词：「鉴定我的麦门作息」「我是哪种麦门」「麦门作息」「麦当劳人格」；汇报口径 = 称号 + 三数字 + 卡片路径） | ≈55 |
 | README.md | 重写（含成品卡截图位） | ≈130 |
 | CONTEST_DECLARATION.md | 复制 mcaudit 同名文件，提交前逐字核对官方版 | 复制 |
@@ -343,21 +343,34 @@ mcaudit 目录只读；下表全部为 mcd-chrono 新建文件。「来源」列
 | .gitignore | 原样复制（含 out/、raw.json、*.token） | 8 |
 | docs/batches/tests/*.py | 批次单元断言文件（§9；随批次归档，不进项目 test/ 树） | ≈320 |
 
-**fixture 参数设计**（make_fixture.py 改造，确定性种子不变式）：
+**fixture 参数设计**（make_fixture.py，确定性种子不变式）：
 
-- 改造点 1（星期维度）：先按 `rng.choices([0..6], weights=profile["weekdays"])` 抽目标星期
-  （替换原 randint(0,6)，L97），再由日期反推 week*7+offset 定位到该星期（直接 offset=权重抽取在
-  start 为周五时会把周末错配工作日权重——实现按参数意图修正，T5 实测 0.046/0.487 符合 96%/50%）。
-- 改造点 2：`ORDER_TYPES` 权重从全局常量改为每 profile 一项（外卖率可调，喂 P5 边界）。
-- 改造点 3：normal 的早餐小时分钟保持 0-59 均匀（T3_std ≈ 17 < 45，P3 稳定命中）。
-- `normal`：per_week ([0,1,2,3],[16,44,28,12])≈71 单/年；hours ([8,12,15,19,22],[45,25,10,12,8])
-  → t3_ratio≈0.45（对 P3 阈值 0.35 余量 0.10）、T4≈0.08；weekdays 工作日 96%；外卖 [70,30] → T6≈0.30。**预期 P3 晨间通勤麦**。
-- `heavy`：per_week ([1,2,3,4,5],[10,26,30,22,12])≈156 单/年；hours
-  ([8,12,15,19,22,23],[6,20,6,20,26,22]) → T4≈0.48；weekdays 周末 50%；外卖 [40,60]。**预期 P2 深夜麦门守护者**。
-- 两 profile 期望 T7 < 0.40（多单品金额聚合分散，P1 不抢跑）——上两条「预期 P3/P2」的前提
-  （E5 生成后核对）。
-- 两样例人格不同 = A1 的 fixture 侧保证；A2 的八人格全覆盖用单元测试直接构造订单字典
-  （精确控阈值），不走生成器。
+判定链是「优先级 1→8、命中即停」，所以每份样例除了踩中自己的线，还必须不误踩**上游**
+各条线。八份样例的参数都是按这个约束反推的，`docs/batches/tests/test_fixtures.py`
+把「每份样例命中对应人格」钉成了断言——改任一阈值或参数，这里会第一时间响。
+
+通用机制：
+
+- 星期维度：先按 `rng.choices([0..6], weights=工作日×5 + 周末×2)` 抽目标星期，再由日期
+  反推 week×7+offset 定位（直接拿 offset 抽权重，在 start 为周五时会把周末错配工作日权重）。
+- `ORDER_TYPES` 权重按 profile 配置（外卖率可调，喂 P5 边界）。
+- 早餐时段（hour < 10）只从早餐池抽，池含咖啡与薯饼共 5 个 SKU。
+- `staple`：每单强制含某单品（p1 专用，把 T7 顶过 0.40）。
+- `even_menu`：菜单洗牌轮转（p7 专用，16 单的样本量下防止某单品堆过 40% 误触 P1）。
+- `mode: monthly`：按月撒点（p7 专用，13 个自然月各 1-2 单，T8 < 1.5）。
+
+| 样例 | 人格 | 靠什么压线 | n | 实测关键特征 |
+|---|---|---|---|---|
+| p1 | P1 巨无霸钉子户 | 每单必含巨无霸，其余只点小食饮料 | 81 | T7=0.63 |
+| p2 | P2 深夜麦门守护者 | 21 点后过半 | 149 | T4=0.52 |
+| p3 | P3 晨间通勤麦 | 8 点前后、工作日 96% | 74 | T3=0.57、离散 15.3 分 |
+| p4 | P4 卡点特种兵 | 全部订单压在 10-13 点 | 99 | T2=0.66、T9=59.0 分 |
+| p5 | P5 周末宅家派 | 周末四成、外卖七成 | 60 | T5=0.43、T6=0.70 |
+| p6 | P6 下午茶哲学家 | 14-16 点占过半 | 101 | 下午茶=0.55 |
+| p7 | P7 麦门幸运儿 | 13 个月只有 16 单 | 16 | T8=1.23 |
+| p8 | P8 全麦自由人 | 五时段都占一点，但都不过线 | 76 | 夜 0.14、茶 0.16、周末 0.32 |
+
+`normal` / `heavy` 作为旧名别名保留（→ p3 / p2），`load_demo` 内部映射，不增加代码分支。
 
 ## 9. 测试策略（零依赖，断言式）
 
@@ -370,15 +383,16 @@ sys.path 后跑 unittest）。
 | test_features.py | T9 环形：同一时刻→0；23:59+00:01→≈1.0；全天均匀→≈415.7；R<1e-9→415.7。窗口边界：20:59→晚、21:00→夜、04:59→夜、05:00→早、09:59/10:00、13:59/14:00、16:59/17:00；T2 窗 10:59/11:00/12:59/13:00；T3 窗 05:29/05:30/09:29/09:30。T8 自然月数、T10 单店=1.0、T7 聚合、T6 类型子串 | A2、A4 |
 | test_persona.py | 八人格各 ≥1 例正命中 + 关键阈值边界（T4=0.25 命中 / 0.2499 不命中）；优先级（P1∧P2 同满足→P1）；n=4→安慰卡、n=5→进链；T7=None→P1 跳过落 P2；None 操作数判否 | A2、A3 |
 | test_card_offline.py | 对生成的三份 HTML 断言源码无 `http://`/`https://`（A5 机器判据）；demo 水印存在、live 无水印 | A5 |
+| test_fixtures.py | 八份样例各命中对应人格（防参数漂移滑去上游人格）；n ≥ 5 不进安慰卡；order_time 有序；旧名 normal/heavy 指向 p3/p2 | A1、A2 |
 
-收尾集成（主 agent 侧，一次）：A1 三跑（`--demo`、`--demo --sample heavy`、人格比对）+
+收尾集成（主 agent 侧，一次）：A1 九跑（`--demo`、`--demo --sample p1`…`p8`、人格两两比对）+
 A3（4 单样例）+ A4（真实 Token，10-18 回传后）。单元文件不转集成、不挂门禁。
 
 ## 10. 验收映射表（REQ A1-A7 ← 设计章节 ← 批次条目）
 
 | 验收 | 判据（REQ §4） | 设计落点 | 批次条目 |
 |---|---|---|---|
-| A1 | --demo 与 --demo --sample heavy 各出卡、人格不同 | §6 CLI、§8 fixture 参数（P3/P2 预期）、§5 卡片 | E4/E5/E8 |
+| A1 | `--demo` 与 `--demo --sample p1`…`p8` 各出卡、八份人格互不相同 | §6 CLI、§8 fixture 参数（八份一致） | E4/E5/E8 |
 | A2 | 八人格各触发 ≥1 次（定制样例） | §3 定义、§4 判定链、§9 test_persona；以直接构造字典替代定制 fixture（精确控阈值，见 §8 fixture 设计） | E2/E3/E9 |
 | A3 | <5 单安慰卡 | §4.1 链前置、§7 | E3/E9 |
 | A4 | --live 跑通 + 容错生效（10-18 回传核对） | §2 fetch 平移、§6.1 dump、§7 降级 | E1/E2 |
@@ -424,8 +438,8 @@ REQ §5 两处口径的落点：修订①（T9 分钟制环形）→ §3.2；修
 
 | # | 类型 | 输入 | 预期输出 |
 |---|---|---|---|
-| C1 | 正常 | 71 单 normal fixture | P3 卡，t3_ratio≈0.45，T9 多峰小时分布下为大量值（实测 ≈280 分钟，仍远超 P4 阈值 75，不触发） |
-| C2 | 正常 | 156 单 heavy fixture | P2 卡，T4≈0.48 |
+| C1 | 正常 | 74 单 p3 fixture | P3 卡，t3_ratio=0.57，t3_std=15.3；T9 在多峰小时分布下为大量值（≈291 分钟，远超 P4 阈值 75，不触发） |
+| C2 | 正常 | 149 单 p2 fixture | P2 卡，T4=0.52 |
 | C3 | 边界 | 23:59 与 00:01 各一单（+3 单白日） | T9≈1.0 分钟，两单同落夜窗 |
 | C4 | 边界 | 20:59 单 vs 21:00 单 | 前者晚窗、后者夜窗 |
 | C5 | 边界 | 04:59 单 vs 05:00 单 | 前者夜窗、后者早窗 |

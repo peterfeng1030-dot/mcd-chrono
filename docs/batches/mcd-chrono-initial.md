@@ -37,6 +37,8 @@
 
 2026-10-17 补记：评审 pass（🔴0·🟡3·🔵4）+ 修复轮收敛（六号 Fixed，7 号转实现轮）。用户指令「先做个 demo 看看」——实现轮以 demo 范围派发（E1-E6+E9），E7 交付物延后至 demo 反馈后；正式批准（§4）待用户过目 demo 卡后补记。
 
+2026-10-17 晚 live 实测（A4）：用户真实账号经 check_token.py + main.py --live 全链跑通——Token 有效、MCP 握手成功、订单拉取/字段容错/门店名解析全部正确（raw_sample.json 十字段与容错层对齐）；账号仅 1 笔订单（2026-05-15 板烧鸡腿堡），正确触发安慰卡，A3 在 live 模式顺带验证。O3 关闭：探针（.thincoder/tmp/probe_orderlist_schema.py）读出 order-list 的 inputSchema 为空对象——不收任何参数、无分页面，单次调用即全量；mall-order-list（lastId/size 分页）是商城兑换单工具，不在主链路。A4 真实数据人格判定未行使（样本 <5），如需闭环须换 ≥5 单账号实测，可选。
+
 ## §2 批次任务与设计（eng-designer）
 
 

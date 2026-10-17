@@ -2,12 +2,10 @@
 
 把你一年在麦当劳的下单时间，鉴定成一种打工人作息人格。
 
-| 早上七点半下单的人 | 晚上十一点下单的人 |
-|---|---|
-| <img src="docs/assets/card-morning.png" width="330" alt="晨间通勤麦"> | <img src="docs/assets/card-night.png" width="330" alt="深夜麦门守护者"> |
-| 🌅 **晨间通勤麦** · 夜间订单 6.9% | 🌙 **深夜麦门守护者** · 夜间订单 45.4% |
+<img src="docs/assets/persona-wall.png" width="100%" alt="八种麦门作息人格卡">
 
-上面两张卡片的原始数据都在 `fixtures/` 下，跑 `--demo` 就能复现。
+八种人格、八份样例，全部能用 `--demo` 离线复现——上面每张卡都是这个仓库真实跑出来的输出，
+不是设计稿。
 
 同样一份套餐，早上七点半吃和凌晨一点吃，说的是两种人生。mcd-chrono 调麦当劳官方 MCP
 拉你自己的历史订单，只看一件事：你**什么时候**下的单。然后给出一张鉴定卡，一个称号，
@@ -45,18 +43,26 @@ python main.py --demo
 判定从上往下，命中即停。每份报告都会写明命中的是哪条线、实际数字是多少，不做黑箱。
 样本不足 5 单的不进判定链，直接出 🍟 安慰卡。
 
+同一条数据管道，两张卡的差别只在时间：
+
+| 早上七点半下单的人 | 晚上十一点下单的人 |
+|---|---|
+| <img src="docs/assets/card-morning.png" width="330" alt="晨间通勤麦"> | <img src="docs/assets/card-night.png" width="330" alt="深夜麦门守护者"> |
+| 🌅 **晨间通勤麦** · 夜间订单 8.0% | 🌙 **深夜麦门守护者** · 夜间订单 51.7% |
+
 ## 快速开始
 
 只需要 Python 3.10+，不装任何第三方包。
 
 ```bash
-python main.py --demo                    # 内置样例
-python main.py --demo --sample heavy     # 换一份样例
+python main.py --demo                    # 默认出 p3 晨间通勤麦
+python main.py --demo --sample p4        # 换成指定人格的样例
+python main.py --demo --list-samples     # 看八份样例分别是哪种人格
 python main.py --demo --share            # 顺便输出分享文案
 ```
 
-`--sample` 可选 `normal` 和 `heavy` 两份，都在 `fixtures/` 下。两份的时段分布差别很大，
-跑出来的通常是两种不同人格。
+`--sample` 收 `p1` 到 `p8`，与八个人格一一对应，八份样例都在 `fixtures/` 下。
+旧名 `normal` / `heavy` 仍然可用，分别指向 `p3` 和 `p2`。
 
 运行完在 `out/` 下得到三个文件：
 
@@ -123,14 +129,14 @@ mcd-chrono/
 ├── features.py                T1~T10 特征提取
 ├── persona.py                 八人格判定引擎与全部文案
 ├── card.py                    卡片 / 报告 / Markdown 渲染
-├── fixtures/                  两份构造样例（normal / heavy）及其生成器
+├── fixtures/                  八份构造样例（p1→P1 … p8→P8）及其生成器
 ├── scripts/
 │   └── check_token.py         Token 验证与本地保存
 ├── docs/
 │   ├── requirements/          需求文档
 │   ├── design/                设计文档
-│   ├── assets/                README 用的两张示例卡片图
-│   └── batches/tests/         单元测试（66 例，八人格判定链与卡片离线渲染）
+│   ├── assets/                卡片示例图与八人格墙
+│   └── batches/tests/         单元测试（70 例：判定链、特征、卡片离线渲染、样例归宿）
 └── out/                       输出目录（不提交）
 ```
 
@@ -158,8 +164,8 @@ a 24-hour heat strip, and one verdict line.
 Standard library only. No `pip install` needed.
 
 ```bash
-python main.py --demo                    # built-in sample, no token required
-python main.py --demo --sample heavy     # two sample profiles shipped
+python main.py --demo                    # built-in samples, no token required
+python main.py --demo --sample p4        # eight sample profiles, one per persona
 ```
 
 For your own data, get a free MCP token at [open.mcd.cn/mcp](https://open.mcd.cn/mcp), then:

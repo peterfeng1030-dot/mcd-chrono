@@ -1,7 +1,8 @@
 """麦门作息鉴定 · mcd-chrono CLI 入口（设计 §6）。
 
-    python main.py --demo                          内置样例出卡（normal）
-    python main.py --demo --sample heavy           重度用户样例出卡
+    python main.py --demo                          内置样例出卡（默认 p3 晨间通勤麦）
+    python main.py --demo --sample p4              指定人格样例（p1-p8 对应八个人格）
+    python main.py --demo --list-samples           列出八份样例分别是哪种人格
     python main.py --live                          调麦当劳 MCP 拉真实订单（需 MCD_MCP_TOKEN）
     python main.py --live --dump raw.json          额外落盘原始返回（字段核对，§6.1）
     python main.py --demo --share                  追加打印分享文案
@@ -19,7 +20,7 @@ from pathlib import Path
 import card
 import features
 import persona
-from fetch import fetch_orders, load_demo
+from fetch import DEMO_PROFILES, fetch_orders, load_demo
 
 try:
     sys.stdout.reconfigure(encoding="utf-8")
@@ -68,15 +69,30 @@ def _summary(result: dict, paths: list[Path]) -> None:
         print(f"  已生成  {path.resolve()}")
 
 
+def _list_samples() -> None:
+    """列出八份样例（人格名读各文件的 persona 字段，不在此处硬编码）。"""
+    print("\n  可用样例（与 persona.py 的判定链一一对应）\n")
+    for key in DEMO_PROFILES:
+        try:
+            data = load_demo(key)
+        except SystemExit:
+            print(f"  {key}   （样例文件缺失）")
+            continue
+        print(f"  {key}   {data.get('persona', '—'):<20} {len(data['orders']):>4} 单")
+    print("\n  用法：python main.py --demo --sample p4")
+    print("  旧名仍可用：normal = p3，heavy = p2\n")
+
+
 def run(args) -> int:
+    if args.list_samples:
+        _list_samples()
+        return 0
+
     # ---- 数据源（--demo / --live 互斥必选）
     if args.demo:
-        if args.sample not in ("normal", "heavy"):
-            print(f"不支持的样例类型：{args.sample}（可选 normal / heavy）", file=sys.stderr)
-            return 2
         if args.dump:
             print("--dump 仅 live 模式生效，已忽略。", file=sys.stderr)
-        data = load_demo(args.sample)
+        data = load_demo(args.sample or "p3")
         orders = data["orders"]
         source = "demo"
     else:
@@ -137,18 +153,19 @@ def main() -> int:
     mode = ap.add_mutually_exclusive_group(required=True)
     mode.add_argument("--demo", action="store_true", help="用内置样例数据出卡")
     mode.add_argument("--live", action="store_true", help="调用麦当劳 MCP 拉真实订单")
+    mode.add_argument("--list-samples", action="store_true", help="列出八份样例对应的人格")
     ap.add_argument(
         "--sample",
-        choices=["normal", "heavy"],
-        default="normal",
-        help="样例类型（配合 --demo），默认 normal",
+        choices=DEMO_PROFILES + ["normal", "heavy"],
+        default=None,
+        help="样例类型（配合 --demo）：p1-p8 对应八个人格，默认 p3；旧名 normal=p3、heavy=p2",
     )
     ap.add_argument("--dump", metavar="PATH", help="仅 live：落盘 JSON（含 raw_sample 首条原始样本）")
     ap.add_argument("--share", action="store_true", help="生成后向 stdout 打印分享文案")
     ap.add_argument("--out", default=str(OUT_DIR), help="输出目录，默认 ./out")
     args = ap.parse_args()
 
-    if args.live and args.sample != "normal":
+    if args.live and args.sample:
         print("--sample 与 --live 同给：已忽略 --sample。", file=sys.stderr)
 
     return run(args)

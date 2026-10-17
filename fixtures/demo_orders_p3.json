@@ -1,0 +1,3181 @@
+{
+  "source": "demo",
+  "profile": "p3",
+  "persona": "P3 晨间通勤麦",
+  "generated_at": "2026-10-15",
+  "note": "晨间通勤麦：一天从猪柳蛋开始（构造数据，非真实订单）",
+  "orders": [
+    {
+      "order_id": "MC100002",
+      "order_time": "2025-10-17 12:28",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "薯条 中",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 10.0,
+          "amount": 10.0,
+          "kcal": 330,
+          "protein": 4,
+          "fat": 17,
+          "carb": 41,
+          "sodium": 260
+        },
+        {
+          "name": "麦香鱼",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 16.5,
+          "amount": 16.5,
+          "kcal": 340,
+          "protein": 15,
+          "fat": 14,
+          "carb": 39,
+          "sodium": 620
+        }
+      ],
+      "gross": 26.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 26.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100001",
+      "order_time": "2025-10-22 08:53",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 14.5,
+      "discount": 12,
+      "delivery_fee": 0.0,
+      "paid": 2.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100003",
+      "order_time": "2025-10-24 15:45",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "薯条 大",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 430,
+          "protein": 5,
+          "fat": 22,
+          "carb": 53,
+          "sodium": 350
+        }
+      ],
+      "gross": 50.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 50.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100004",
+      "order_time": "2025-10-31 08:47",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 7.5,
+          "amount": 15.0,
+          "kcal": 260,
+          "protein": 4,
+          "fat": 16,
+          "carb": 28,
+          "sodium": 520
+        }
+      ],
+      "gross": 15.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 15.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100005",
+      "order_time": "2025-11-07 08:09",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 2,
+          "unit_price": 11.0,
+          "amount": 22.0,
+          "kcal": 30,
+          "protein": 2,
+          "fat": 0,
+          "carb": 4,
+          "sodium": 20
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 35.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 35.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100006",
+      "order_time": "2025-11-12 08:33",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 22.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 22.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100008",
+      "order_time": "2025-11-17 22:40",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 2,
+          "unit_price": 11.0,
+          "amount": 22.0,
+          "kcal": 30,
+          "protein": 2,
+          "fat": 0,
+          "carb": 4,
+          "sodium": 20
+        },
+        {
+          "name": "菠萝派",
+          "category": "甜品",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 250,
+          "protein": 3,
+          "fat": 14,
+          "carb": 28,
+          "sodium": 180
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 12.0,
+          "amount": 24.0,
+          "kcal": 700,
+          "protein": 14,
+          "fat": 24,
+          "carb": 104,
+          "sodium": 960
+        }
+      ],
+      "gross": 55.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 55.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100007",
+      "order_time": "2025-11-18 22:38",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "板烧鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 22.0,
+          "amount": 22.0,
+          "kcal": 420,
+          "protein": 24,
+          "fat": 18,
+          "carb": 40,
+          "sodium": 850
+        }
+      ],
+      "gross": 35.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 41.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100010",
+      "order_time": "2025-11-22 08:59",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 27.5,
+      "discount": 6,
+      "delivery_fee": 0.0,
+      "paid": 21.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100009",
+      "order_time": "2025-11-24 08:21",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 2,
+          "unit_price": 11.0,
+          "amount": 22.0,
+          "kcal": 30,
+          "protein": 2,
+          "fat": 0,
+          "carb": 4,
+          "sodium": 20
+        }
+      ],
+      "gross": 22.0,
+      "discount": 12,
+      "delivery_fee": 0.0,
+      "paid": 10.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100011",
+      "order_time": "2025-12-01 19:18",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "玉米杯",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 8.0,
+          "amount": 8.0,
+          "kcal": 70,
+          "protein": 2,
+          "fat": 1,
+          "carb": 15,
+          "sodium": 10
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 22.5,
+      "discount": 8,
+      "delivery_fee": 0.0,
+      "paid": 14.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100012",
+      "order_time": "2025-12-06 08:37",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 12.0,
+          "amount": 24.0,
+          "kcal": 700,
+          "protein": 14,
+          "fat": 24,
+          "carb": 104,
+          "sodium": 960
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 51.5,
+      "discount": 8,
+      "delivery_fee": 0.0,
+      "paid": 43.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100014",
+      "order_time": "2025-12-19 22:01",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        },
+        {
+          "name": "零度可乐 中",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carb": 0,
+          "sodium": 20
+        },
+        {
+          "name": "麦香鱼",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 16.5,
+          "amount": 16.5,
+          "kcal": 340,
+          "protein": 15,
+          "fat": 14,
+          "carb": 39,
+          "sodium": 620
+        }
+      ],
+      "gross": 49.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 49.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100013",
+      "order_time": "2025-12-24 12:26",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 7.5,
+          "amount": 15.0,
+          "kcal": 260,
+          "protein": 4,
+          "fat": 16,
+          "carb": 28,
+          "sodium": 520
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 2,
+          "unit_price": 13.0,
+          "amount": 26.0,
+          "kcal": 30,
+          "protein": 0,
+          "fat": 0,
+          "carb": 6,
+          "sodium": 20
+        }
+      ],
+      "gross": 41.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 41.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100017",
+      "order_time": "2025-12-25 12:51",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "薯条 中",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 10.0,
+          "amount": 10.0,
+          "kcal": 330,
+          "protein": 4,
+          "fat": 17,
+          "carb": 41,
+          "sodium": 260
+        },
+        {
+          "name": "菠萝派",
+          "category": "甜品",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 250,
+          "protein": 3,
+          "fat": 14,
+          "carb": 28,
+          "sodium": 180
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 32.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 38.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100016",
+      "order_time": "2025-12-26 08:56",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        }
+      ],
+      "gross": 20.5,
+      "discount": 10,
+      "delivery_fee": 6.0,
+      "paid": 16.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100015",
+      "order_time": "2025-12-30 19:09",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "麦旋风",
+          "category": "甜品",
+          "qty": 1,
+          "unit_price": 11.5,
+          "amount": 11.5,
+          "kcal": 330,
+          "protein": 6,
+          "fat": 12,
+          "carb": 48,
+          "sodium": 150
+        },
+        {
+          "name": "菠萝派",
+          "category": "甜品",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 250,
+          "protein": 3,
+          "fat": 14,
+          "carb": 28,
+          "sodium": 180
+        },
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        }
+      ],
+      "gross": 44.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 44.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100018",
+      "order_time": "2026-01-05 08:52",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        }
+      ],
+      "gross": 31.5,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 37.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100019",
+      "order_time": "2026-01-06 08:38",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        }
+      ],
+      "gross": 19.5,
+      "discount": 8,
+      "delivery_fee": 0.0,
+      "paid": 11.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100020",
+      "order_time": "2026-01-09 19:02",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "麦辣鸡翅2块",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 13.5,
+          "amount": 13.5,
+          "kcal": 250,
+          "protein": 14,
+          "fat": 17,
+          "carb": 10,
+          "sodium": 620
+        }
+      ],
+      "gross": 24.5,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 30.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100021",
+      "order_time": "2026-01-18 12:19",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "薯条 大",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 430,
+          "protein": 5,
+          "fat": 22,
+          "carb": 53,
+          "sodium": 350
+        },
+        {
+          "name": "麦乐鸡5块",
+          "category": "小食",
+          "qty": 2,
+          "unit_price": 14.0,
+          "amount": 28.0,
+          "kcal": 460,
+          "protein": 24,
+          "fat": 30,
+          "carb": 24,
+          "sodium": 1040
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        }
+      ],
+      "gross": 52.0,
+      "discount": 3,
+      "delivery_fee": 0.0,
+      "paid": 49.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100023",
+      "order_time": "2026-01-27 08:52",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 24.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 24.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100022",
+      "order_time": "2026-01-28 08:39",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 26.5,
+      "discount": 8,
+      "delivery_fee": 0.0,
+      "paid": 18.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100024",
+      "order_time": "2026-02-12 08:31",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 34.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 34.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100025",
+      "order_time": "2026-02-13 08:29",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 25.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 25.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100026",
+      "order_time": "2026-02-19 12:22",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "薯条 中",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 10.0,
+          "amount": 10.0,
+          "kcal": 330,
+          "protein": 4,
+          "fat": 17,
+          "carb": 41,
+          "sodium": 260
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "巨无霸",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 26.5,
+          "amount": 26.5,
+          "kcal": 550,
+          "protein": 25,
+          "fat": 30,
+          "carb": 45,
+          "sodium": 1010
+        }
+      ],
+      "gross": 44.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 44.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100029",
+      "order_time": "2026-02-26 12:31",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 14.5,
+          "amount": 29.0,
+          "kcal": 960,
+          "protein": 44,
+          "fat": 52,
+          "carb": 72,
+          "sodium": 1800
+        },
+        {
+          "name": "麦乐鸡5块",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 14.0,
+          "amount": 14.0,
+          "kcal": 230,
+          "protein": 12,
+          "fat": 15,
+          "carb": 12,
+          "sodium": 520
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 56.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 56.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100027",
+      "order_time": "2026-02-27 08:15",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 12.0,
+      "discount": 6,
+      "delivery_fee": 0.0,
+      "paid": 6.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100028",
+      "order_time": "2026-03-04 15:26",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 13.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 19.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100030",
+      "order_time": "2026-03-09 08:48",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 7.5,
+          "amount": 15.0,
+          "kcal": 260,
+          "protein": 4,
+          "fat": 16,
+          "carb": 28,
+          "sodium": 520
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        }
+      ],
+      "gross": 51.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 51.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100031",
+      "order_time": "2026-03-09 12:06",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "薯条 大",
+          "category": "小食",
+          "qty": 2,
+          "unit_price": 13.0,
+          "amount": 26.0,
+          "kcal": 860,
+          "protein": 10,
+          "fat": 44,
+          "carb": 106,
+          "sodium": 700
+        },
+        {
+          "name": "玉米杯",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 8.0,
+          "amount": 8.0,
+          "kcal": 70,
+          "protein": 2,
+          "fat": 1,
+          "carb": 15,
+          "sodium": 10
+        }
+      ],
+      "gross": 34.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 34.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100033",
+      "order_time": "2026-03-12 08:24",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        }
+      ],
+      "gross": 45.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 45.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100032",
+      "order_time": "2026-03-17 12:57",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 12.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 12.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100034",
+      "order_time": "2026-03-31 08:10",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 12.0,
+          "amount": 24.0,
+          "kcal": 700,
+          "protein": 14,
+          "fat": 24,
+          "carb": 104,
+          "sodium": 960
+        }
+      ],
+      "gross": 38.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 38.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100036",
+      "order_time": "2026-04-02 08:31",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        }
+      ],
+      "gross": 11.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 17.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100035",
+      "order_time": "2026-04-06 12:00",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "巨无霸",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 26.5,
+          "amount": 26.5,
+          "kcal": 550,
+          "protein": 25,
+          "fat": 30,
+          "carb": 45,
+          "sodium": 1010
+        },
+        {
+          "name": "零度可乐 中",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carb": 0,
+          "sodium": 20
+        }
+      ],
+      "gross": 35.5,
+      "discount": 3,
+      "delivery_fee": 0.0,
+      "paid": 32.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100038",
+      "order_time": "2026-04-10 08:31",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 39.5,
+      "discount": 10,
+      "delivery_fee": 0.0,
+      "paid": 29.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100037",
+      "order_time": "2026-04-14 19:04",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "可口可乐 中",
+          "category": "饮料",
+          "qty": 2,
+          "unit_price": 9.0,
+          "amount": 18.0,
+          "kcal": 300,
+          "protein": 0,
+          "fat": 0,
+          "carb": 76,
+          "sodium": 30
+        },
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        }
+      ],
+      "gross": 42.0,
+      "discount": 5,
+      "delivery_fee": 0.0,
+      "paid": 37.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100039",
+      "order_time": "2026-04-16 12:55",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "板烧鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 22.0,
+          "amount": 22.0,
+          "kcal": 420,
+          "protein": 24,
+          "fat": 18,
+          "carb": 40,
+          "sodium": 850
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "零度可乐 中",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carb": 0,
+          "sodium": 20
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 56.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 56.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100040",
+      "order_time": "2026-04-21 12:41",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "豆浆",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 8.0,
+          "amount": 8.0,
+          "kcal": 100,
+          "protein": 8,
+          "fat": 4,
+          "carb": 8,
+          "sodium": 90
+        }
+      ],
+      "gross": 15.5,
+      "discount": 6,
+      "delivery_fee": 0.0,
+      "paid": 9.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100041",
+      "order_time": "2026-04-27 08:57",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 43.5,
+      "discount": 12,
+      "delivery_fee": 0.0,
+      "paid": 31.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100042",
+      "order_time": "2026-05-13 12:38",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "薯条 中",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 10.0,
+          "amount": 10.0,
+          "kcal": 330,
+          "protein": 4,
+          "fat": 17,
+          "carb": 41,
+          "sodium": 260
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        }
+      ],
+      "gross": 21.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 21.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100043",
+      "order_time": "2026-06-01 08:16",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 2,
+          "unit_price": 13.0,
+          "amount": 26.0,
+          "kcal": 30,
+          "protein": 0,
+          "fat": 0,
+          "carb": 6,
+          "sodium": 20
+        }
+      ],
+      "gross": 37.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 37.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100045",
+      "order_time": "2026-06-12 08:44",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 7.5,
+          "amount": 15.0,
+          "kcal": 260,
+          "protein": 4,
+          "fat": 16,
+          "carb": 28,
+          "sodium": 520
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 54.5,
+      "discount": 6,
+      "delivery_fee": 0.0,
+      "paid": 48.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100046",
+      "order_time": "2026-06-15 19:33",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "板烧鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 22.0,
+          "amount": 22.0,
+          "kcal": 420,
+          "protein": 24,
+          "fat": 18,
+          "carb": 40,
+          "sodium": 850
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "麦辣鸡翅2块",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 13.5,
+          "amount": 13.5,
+          "kcal": 250,
+          "protein": 14,
+          "fat": 17,
+          "carb": 10,
+          "sodium": 620
+        }
+      ],
+      "gross": 54.0,
+      "discount": 8,
+      "delivery_fee": 0.0,
+      "paid": 46.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100044",
+      "order_time": "2026-06-16 08:27",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 36.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 42.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100048",
+      "order_time": "2026-06-19 08:27",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 12.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 12.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100049",
+      "order_time": "2026-06-19 08:31",
+      "order_type": "麦乐送",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 26.5,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 32.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100047",
+      "order_time": "2026-06-24 08:00",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 50.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 50.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100050",
+      "order_time": "2026-06-25 08:42",
+      "order_type": "麦乐送",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 27.5,
+      "discount": 3,
+      "delivery_fee": 6.0,
+      "paid": 30.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100051",
+      "order_time": "2026-07-08 15:38",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "板烧鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 22.0,
+          "amount": 22.0,
+          "kcal": 420,
+          "protein": 24,
+          "fat": 18,
+          "carb": 40,
+          "sodium": 850
+        },
+        {
+          "name": "豆浆",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 8.0,
+          "amount": 8.0,
+          "kcal": 100,
+          "protein": 8,
+          "fat": 4,
+          "carb": 8,
+          "sodium": 90
+        }
+      ],
+      "gross": 30.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 30.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100052",
+      "order_time": "2026-07-11 12:46",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "可口可乐 中",
+          "category": "饮料",
+          "qty": 2,
+          "unit_price": 9.0,
+          "amount": 18.0,
+          "kcal": 300,
+          "protein": 0,
+          "fat": 0,
+          "carb": 76,
+          "sodium": 30
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 37.5,
+      "discount": 8,
+      "delivery_fee": 6.0,
+      "paid": 35.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100053",
+      "order_time": "2026-07-22 08:24",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 37.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 37.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100054",
+      "order_time": "2026-07-23 08:12",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 35.0,
+      "discount": 10,
+      "delivery_fee": 0.0,
+      "paid": 25.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100055",
+      "order_time": "2026-08-02 08:57",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "鲜煮咖啡",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 11.0,
+          "amount": 11.0,
+          "kcal": 15,
+          "protein": 1,
+          "fat": 0,
+          "carb": 2,
+          "sodium": 10
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 36.0,
+      "discount": 10,
+      "delivery_fee": 0.0,
+      "paid": 26.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100056",
+      "order_time": "2026-08-05 08:29",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        }
+      ],
+      "gross": 22.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 28.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100057",
+      "order_time": "2026-08-11 08:19",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 12.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 12.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100059",
+      "order_time": "2026-08-17 15:58",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "豆浆",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 8.0,
+          "amount": 8.0,
+          "kcal": 100,
+          "protein": 8,
+          "fat": 4,
+          "carb": 8,
+          "sodium": 90
+        }
+      ],
+      "gross": 8.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 14.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100058",
+      "order_time": "2026-08-18 08:13",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 12.0,
+          "amount": 24.0,
+          "kcal": 700,
+          "protein": 14,
+          "fat": 24,
+          "carb": 104,
+          "sodium": 960
+        }
+      ],
+      "gross": 31.5,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 37.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100060",
+      "order_time": "2026-08-26 22:39",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "零度可乐 中",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 0,
+          "protein": 0,
+          "fat": 0,
+          "carb": 0,
+          "sodium": 20
+        },
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 2,
+          "unit_price": 24.0,
+          "amount": 48.0,
+          "kcal": 1140,
+          "protein": 54,
+          "fat": 66,
+          "carb": 84,
+          "sodium": 2360
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 71.5,
+      "discount": 6,
+      "delivery_fee": 0.0,
+      "paid": 65.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100061",
+      "order_time": "2026-09-01 08:21",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 19.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 19.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100063",
+      "order_time": "2026-09-01 08:22",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 12.0,
+          "amount": 24.0,
+          "kcal": 700,
+          "protein": 14,
+          "fat": 24,
+          "carb": 104,
+          "sodium": 960
+        }
+      ],
+      "gross": 24.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 24.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100062",
+      "order_time": "2026-09-01 19:21",
+      "order_type": "到店取餐",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        },
+        {
+          "name": "菠萝派",
+          "category": "甜品",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 250,
+          "protein": 3,
+          "fat": 14,
+          "carb": 28,
+          "sodium": 180
+        }
+      ],
+      "gross": 46.0,
+      "discount": 12,
+      "delivery_fee": 0.0,
+      "paid": 34.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100066",
+      "order_time": "2026-09-04 08:55",
+      "order_type": "麦乐送",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 25.0,
+      "discount": 10,
+      "delivery_fee": 6.0,
+      "paid": 21.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100064",
+      "order_time": "2026-09-07 08:57",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 22.0,
+      "discount": 10,
+      "delivery_fee": 0.0,
+      "paid": 12.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100065",
+      "order_time": "2026-09-09 12:31",
+      "order_type": "到店取餐",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        },
+        {
+          "name": "麦辣鸡翅2块",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 13.5,
+          "amount": 13.5,
+          "kcal": 250,
+          "protein": 14,
+          "fat": 17,
+          "carb": 10,
+          "sodium": 620
+        }
+      ],
+      "gross": 25.5,
+      "discount": 5,
+      "delivery_fee": 0.0,
+      "paid": 20.5,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100067",
+      "order_time": "2026-09-16 15:50",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "豆浆",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 8.0,
+          "amount": 8.0,
+          "kcal": 100,
+          "protein": 8,
+          "fat": 4,
+          "carb": 8,
+          "sodium": 90
+        },
+        {
+          "name": "薯条 大",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 430,
+          "protein": 5,
+          "fat": 22,
+          "carb": 53,
+          "sodium": 350
+        },
+        {
+          "name": "可口可乐 中",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 150,
+          "protein": 0,
+          "fat": 0,
+          "carb": 38,
+          "sodium": 15
+        },
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        }
+      ],
+      "gross": 54.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 54.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100068",
+      "order_time": "2026-09-16 19:44",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "可口可乐 中",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 150,
+          "protein": 0,
+          "fat": 0,
+          "carb": 38,
+          "sodium": 15
+        },
+        {
+          "name": "麦香鱼",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 16.5,
+          "amount": 16.5,
+          "kcal": 340,
+          "protein": 15,
+          "fat": 14,
+          "carb": 39,
+          "sodium": 620
+        },
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        }
+      ],
+      "gross": 49.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 49.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100070",
+      "order_time": "2026-09-17 22:58",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "麦乐鸡5块",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 14.0,
+          "amount": 14.0,
+          "kcal": 230,
+          "protein": 12,
+          "fat": 15,
+          "carb": 12,
+          "sodium": 520
+        },
+        {
+          "name": "麦香鱼",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 16.5,
+          "amount": 16.5,
+          "kcal": 340,
+          "protein": 15,
+          "fat": 14,
+          "carb": 39,
+          "sodium": 620
+        },
+        {
+          "name": "巨无霸",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 26.5,
+          "amount": 26.5,
+          "kcal": 550,
+          "protein": 25,
+          "fat": 30,
+          "carb": 45,
+          "sodium": 1010
+        },
+        {
+          "name": "可口可乐 中",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 9.0,
+          "amount": 9.0,
+          "kcal": 150,
+          "protein": 0,
+          "fat": 0,
+          "carb": 38,
+          "sodium": 15
+        }
+      ],
+      "gross": 66.0,
+      "discount": 12,
+      "delivery_fee": 0.0,
+      "paid": 54.0,
+      "coupon_used": true
+    },
+    {
+      "order_id": "MC100069",
+      "order_time": "2026-09-21 08:32",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 7.5,
+          "amount": 15.0,
+          "kcal": 260,
+          "protein": 4,
+          "fat": 16,
+          "carb": 28,
+          "sodium": 520
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 2,
+          "unit_price": 14.5,
+          "amount": 29.0,
+          "kcal": 960,
+          "protein": 44,
+          "fat": 52,
+          "carb": 72,
+          "sodium": 1800
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 69.0,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 69.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100071",
+      "order_time": "2026-09-30 08:47",
+      "order_type": "麦乐送",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        },
+        {
+          "name": "脆薯饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 7.5,
+          "amount": 7.5,
+          "kcal": 130,
+          "protein": 2,
+          "fat": 8,
+          "carb": 14,
+          "sodium": 260
+        },
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        }
+      ],
+      "gross": 35.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 41.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100072",
+      "order_time": "2026-09-30 22:12",
+      "order_type": "到店取餐",
+      "store_code": "SH0455",
+      "store_name": "上海陆家嘴环路餐厅",
+      "items": [
+        {
+          "name": "麦辣鸡翅2块",
+          "category": "小食",
+          "qty": 1,
+          "unit_price": 13.5,
+          "amount": 13.5,
+          "kcal": 250,
+          "protein": 14,
+          "fat": 17,
+          "carb": 10,
+          "sodium": 620
+        },
+        {
+          "name": "麦辣鸡腿堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 24.0,
+          "amount": 24.0,
+          "kcal": 570,
+          "protein": 27,
+          "fat": 33,
+          "carb": 42,
+          "sodium": 1180
+        },
+        {
+          "name": "双层牛柳汉堡",
+          "category": "汉堡",
+          "qty": 1,
+          "unit_price": 20.0,
+          "amount": 20.0,
+          "kcal": 480,
+          "protein": 26,
+          "fat": 22,
+          "carb": 41,
+          "sodium": 900
+        }
+      ],
+      "gross": 57.5,
+      "discount": 0.0,
+      "delivery_fee": 0.0,
+      "paid": 57.5,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100073",
+      "order_time": "2026-10-01 08:16",
+      "order_type": "麦乐送",
+      "store_code": "SH1180",
+      "store_name": "上海人民广场餐厅",
+      "items": [
+        {
+          "name": "热香饼",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 12.0,
+          "amount": 12.0,
+          "kcal": 350,
+          "protein": 7,
+          "fat": 12,
+          "carb": 52,
+          "sodium": 480
+        }
+      ],
+      "gross": 12.0,
+      "discount": 0.0,
+      "delivery_fee": 6.0,
+      "paid": 18.0,
+      "coupon_used": false
+    },
+    {
+      "order_id": "MC100074",
+      "order_time": "2026-10-09 08:46",
+      "order_type": "麦乐送",
+      "store_code": "SH0231",
+      "store_name": "上海南京西路餐厅",
+      "items": [
+        {
+          "name": "猪柳蛋麦满分",
+          "category": "早餐系列",
+          "qty": 1,
+          "unit_price": 14.5,
+          "amount": 14.5,
+          "kcal": 480,
+          "protein": 22,
+          "fat": 26,
+          "carb": 36,
+          "sodium": 900
+        },
+        {
+          "name": "冰美式",
+          "category": "饮料",
+          "qty": 1,
+          "unit_price": 13.0,
+          "amount": 13.0,
+          "kcal": 15,
+          "protein": 0,
+          "fat": 0,
+          "carb": 3,
+          "sodium": 10
+        }
+      ],
+      "gross": 27.5,
+      "discount": 6,
+      "delivery_fee": 6.0,
+      "paid": 27.5,
+      "coupon_used": true
+    }
+  ]
+}

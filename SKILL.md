@@ -23,9 +23,10 @@ description: 鉴定麦当劳作息人格。当用户想知道自己是哪种「�
 
 ```bash
 python main.py --live                  # 真实数据
-python main.py --demo                  # 样例（normal）
-python main.py --demo --sample heavy    # 样例（heavy）
-python main.py --demo --share           # 顺便输出分享文案
+python main.py --demo                  # 样例（默认 p3 晨间通勤麦）
+python main.py --demo --sample p4      # 指定人格的样例（p1-p8）
+python main.py --demo --list-samples   # 列出八份样例分别是哪种人格
+python main.py --demo --share          # 顺便输出分享文案
 ```
 
 输出到 `out/chrono_card.html`（卡片，可直接截图）、`out/chrono_report.html`、

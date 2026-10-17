@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 def main() -> int:
     loader = unittest.TestLoader()
     suite = unittest.TestSuite()
-    for name in ("test_features", "test_persona", "test_card_offline"):
+    for name in ("test_features", "test_persona", "test_card_offline", "test_fixtures"):
         mod = loader.loadTestsFromName(name)
         suite.addTests(mod)
     runner = unittest.TextTestRunner(verbosity=2)
