@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+out/
+out_*/
+raw.json
+raw_sample.json
+.env
+*.token
+.DS_Store
+.idea/
+.vscode/
+.thincoder/
+PROJECT-MANIFEST.json
