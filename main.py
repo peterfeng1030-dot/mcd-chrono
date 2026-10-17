@@ -150,10 +150,14 @@ def main() -> int:
     ap = argparse.ArgumentParser(
         description="麦门作息鉴定：把你一年在麦当劳的下单时间，鉴定成一种打工人作息人格。",
     )
-    mode = ap.add_mutually_exclusive_group(required=True)
+    mode = ap.add_mutually_exclusive_group(required=False)
     mode.add_argument("--demo", action="store_true", help="用内置样例数据出卡")
     mode.add_argument("--live", action="store_true", help="调用麦当劳 MCP 拉真实订单")
-    mode.add_argument("--list-samples", action="store_true", help="列出八份样例对应的人格")
+    ap.add_argument(
+        "--list-samples",
+        action="store_true",
+        help="列出八份样例对应的人格（单独用或与 --demo 同给均可，优先执行）",
+    )
     ap.add_argument(
         "--sample",
         choices=DEMO_PROFILES + ["normal", "heavy"],
@@ -164,6 +168,9 @@ def main() -> int:
     ap.add_argument("--share", action="store_true", help="生成后向 stdout 打印分享文案")
     ap.add_argument("--out", default=str(OUT_DIR), help="输出目录，默认 ./out")
     args = ap.parse_args()
+
+    if not (args.demo or args.live or args.list_samples):
+        ap.error("必须指定 --demo、--live 或 --list-samples")
 
     if args.live and args.sample:
         print("--sample 与 --live 同给：已忽略 --sample。", file=sys.stderr)
