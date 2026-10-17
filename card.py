@@ -73,6 +73,34 @@ def _slot_bars(f: dict) -> str:
     return "".join(rows)
 
 
+def _hour_strip(f: dict) -> str:
+    """段③b 24 格逐小时热力条：柱高与色深同时编码该钟点下单密度，峰值单独标注。"""
+    hist = f.get("hour_hist")
+    if not hist or not any(hist):
+        return '<div class="bars-empty">时间数据不足，无法绘制 24 小时热力条</div>'
+    peak = max(hist)
+    peak_h = hist.index(peak)
+    cells = []
+    for v in hist:
+        ratio = v / peak if peak else 0.0
+        height = 12.0 + 88.0 * ratio
+        alpha = 0.12 + 0.88 * ratio
+        cells.append(
+            '<span class="heat-col"><i class="heat-bar" '
+            f'style="height:{height:.1f}%;background:rgba(218,41,28,{alpha:.2f})"></i></span>'
+        )
+    axis = "".join(
+        f'<span class="heat-tick">{h if h in (0, 6, 12, 18, 23) else ""}</span>'
+        for h in range(24)
+    )
+    return (
+        '<div class="heat">' + "".join(cells) + "</div>"
+        f'<div class="heat-axis">{axis}</div>'
+        f'<div class="heat-cap">峰值落在 {peak_h:02d} 点，这个钟点占了你全年的 '
+        f"{peak * 100:.1f}%</div>"
+    )
+
+
 def _stat_grid(f: dict) -> str:
     """段④ 三数字格：累计订单 / 麦龄天数 / 最忠门店+T10。门店名超长省略号截断。"""
     m = f["meta"]
@@ -123,6 +151,9 @@ def _card(result: dict) -> str:
         _hero(p),
         _hero_sub(f),
         '<div class="block"><h2 class="block-title">时段分布</h2>' + _slot_bars(f) + "</div>",
+        '<div class="block"><h2 class="block-title">24 小时下单热力</h2>'
+        + _hour_strip(f)
+        + "</div>",
         '<div class="stats">' + _stat_grid(f) + "</div>",
         _desc_verdict(p),
         _footer(),
@@ -157,6 +188,13 @@ padding:0 44px 14px;border-bottom:4px solid var(--red)}
 .bar-fill{display:block;height:100%;border-radius:9px}
 .bar-val{width:56px;text-align:right;font-size:14px;color:var(--ink);font-variant-numeric:tabular-nums;flex:none}
 .bars-empty{color:var(--sub);font-size:13px;padding:8px 0}
+.heat{display:grid;grid-template-columns:repeat(24,1fr);gap:3px;height:96px}
+.heat-col{display:flex;align-items:flex-end;height:100%;background:#F2ECDD;
+border-radius:4px;overflow:hidden}
+.heat-bar{display:block;width:100%;border-radius:3px 3px 0 0}
+.heat-axis{display:grid;grid-template-columns:repeat(24,1fr);gap:3px;margin-top:6px;
+font-size:10px;color:var(--sub);text-align:center}
+.heat-cap{margin-top:9px;font-size:11px;color:var(--sub)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 44px 0}
 .stat{background:#FFFFFF;border:1px solid #EFE8D8;border-radius:12px;padding:14px 16px;overflow:hidden}
 .stat-k{font-size:11px;color:var(--sub);letter-spacing:2px}

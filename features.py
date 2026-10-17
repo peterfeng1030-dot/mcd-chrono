@@ -90,6 +90,15 @@ def extract(orders: list[dict]) -> dict:
     else:
         t1 = None
 
+    # 24 格逐小时分布（分母 n_timevalid；无有效时间 → None），仅供卡片热力条展示，不参与判定
+    if n_timevalid:
+        bucket = [0] * 24
+        for m in minutes:
+            bucket[m // 60] += 1
+        hour_hist = [c / n_timevalid for c in bucket]
+    else:
+        hour_hist = None
+
     # T2 工作日午市卡点率（分母 = 工作日订单；窗口 [660,780) 左闭右开）
     if weekday:
         t2 = sum(1 for dt, _ in weekday if 660 <= dt.hour * 60 + dt.minute < 780) / len(weekday)
@@ -180,6 +189,7 @@ def extract(orders: list[dict]) -> dict:
         "n": n,
         "n_timevalid": n_timevalid,
         "t1": t1,
+        "hour_hist": hour_hist,
         "t2": t2,
         "t3_ratio": t3_ratio,
         "t3_std": t3_std,
