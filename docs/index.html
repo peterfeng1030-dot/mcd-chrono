@@ -24,8 +24,27 @@ body{
 .brand-sub{font-size:12px;letter-spacing:1px;color:var(--dimmer);margin-bottom:26px}
 
 /* ---------- 进度 ---------- */
-.prog{height:2px;background:var(--line);border-radius:1px;overflow:hidden;margin-bottom:26px}
+.prog{transition:opacity .3s;height:2px;background:var(--line);border-radius:1px;overflow:hidden;margin-bottom:26px}
 .prog i{display:block;height:100%;width:0;background:var(--yellow);transition:width .35s ease}
+
+/* ---------- 首屏 ---------- */
+#intro{display:flex;flex-direction:column;min-height:calc(100vh - 150px);
+  animation:in .45s ease both}
+.i-title{font-size:42px;font-weight:900;line-height:1.18;letter-spacing:-1.2px;margin-top:7vh}
+.i-title em{font-style:normal;color:var(--yellow);display:block}
+.i-sub{font-size:15px;line-height:1.9;color:var(--dim);margin-top:18px}
+.i-sub b{color:var(--text);font-weight:700}
+.icons{display:flex;justify-content:center;gap:9px;font-size:25px;
+  margin-top:34px;line-height:1;user-select:none}
+.icons span{opacity:.9}
+.i-start{
+  width:100%;border:none;border-radius:13px;padding:18px;
+  background:var(--yellow);color:#141414;
+  font-size:17px;font-weight:800;font-family:inherit;letter-spacing:2px;
+  cursor:pointer;margin-top:auto;
+}
+.i-start:active{transform:scale(.985)}
+.i-foot{font-size:12px;color:var(--dimmer);letter-spacing:.5px;text-align:center;margin-top:16px}
 
 /* ---------- 题 ---------- */
 .q{display:none}
@@ -108,9 +127,21 @@ body{
 <div id="app">
   <div class="brand">MCD CHRONOTYPE</div>
   <div class="brand-sub">麦门作息鉴定所 · 网页体验版</div>
-  <div class="prog"><i id="bar"></i></div>
+  <div class="prog" id="prog"><i id="bar"></i></div>
 
-  <div id="quiz">
+  <div id="intro">
+    <div class="i-title">你在麦当劳<em>是哪种人</em></div>
+    <div class="i-sub">
+      六道题，二十秒。<br>
+      不用注册，不用装东西，答完直接出结果。<br>
+      只看你<b>什么时候点</b>，以及<b>是不是总点同一样</b>。
+    </div>
+    <div class="icons"><span>🍔</span><span>🌙</span><span>🌅</span><span>⏰</span><span>🛋️</span><span>☕</span><span>🍀</span><span>🌀</span></div>
+    <button class="i-start" id="start">开 始 鉴 定</button>
+    <div class="i-foot">八种作息 · 命中即停 · 只会给你一个答案</div>
+  </div>
+
+  <div id="quiz" style="display:none">
     <div class="q on" data-q="0">
       <div class="q-no">01 / 06</div>
       <div class="q-t">你一般什么时候点麦当劳？</div>
@@ -240,6 +271,9 @@ body{
   var step = 0;
   var bar = document.getElementById("bar");
   var qs = document.querySelectorAll(".q");
+  var intro = document.getElementById("intro");
+  var quiz = document.getElementById("quiz");
+  var prog = document.getElementById("prog");
 
   function show(i){
     for (var j=0;j<qs.length;j++) qs[j].classList.toggle("on", j===i);
@@ -247,6 +281,14 @@ body{
     bar.style.width = (i/6*100) + "%";
     window.scrollTo({top:0,behavior:"smooth"});
   }
+
+  // 首屏 → 第一题
+  document.getElementById("start").addEventListener("click", function(){
+    intro.style.display = "none";
+    quiz.style.display = "block";
+    prog.style.opacity = "1";
+    show(0);
+  });
 
   function advance(){
     if (step < 5) show(step+1);
@@ -314,7 +356,8 @@ body{
     document.getElementById("rTitle").textContent = hit.t;
     document.getElementById("rDesc").innerHTML = hit.d.map(function(x){return "<p>"+x+"</p>";}).join("");
     document.getElementById("rVerdict").textContent = hit.v;
-    document.getElementById("quiz").style.display = "none";
+    intro.style.display = "none";
+    quiz.style.display = "none";
     document.getElementById("result").classList.add("on");
     window.scrollTo({top:0,behavior:"smooth"});
   }
@@ -324,8 +367,11 @@ body{
     document.querySelectorAll(".opt").forEach(function(b){b.classList.remove("sel");});
     document.getElementById("next0").classList.remove("ready");
     document.getElementById("result").classList.remove("on");
-    document.getElementById("quiz").style.display = "block";
-    show(0);
+    quiz.style.display = "none";
+    intro.style.display = "flex";
+    prog.style.opacity = "0";
+    bar.style.width = "0%";
+    window.scrollTo({top:0,behavior:"smooth"});
   });
 
   document.getElementById("copy").addEventListener("click", function(){
@@ -350,6 +396,7 @@ body{
   // 暴露给自测脚本
   window.__chrono = {features:features, P:P, finish:finish, ans:ans};
   bar.style.width = "0%";
+  prog.style.opacity = "0";
 })();
 </script>
 </body>
