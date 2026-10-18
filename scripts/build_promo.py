@@ -96,7 +96,7 @@ PEOPLE = """
 
 <div style="position:absolute;bottom:46px;left:78px;right:78px;font-size:15px;
   color:#7A7367;letter-spacing:.6px;line-height:1.6">
-  判定只看下单时间、频次和重复度，不看金额 · 开源工具 mcd-chrono
+  十项特征，九项看时间，一项算你是不是总点同一样 · 开源工具 mcd-chrono
 </div>
 """
 
