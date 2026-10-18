@@ -2,6 +2,9 @@
 
 把你一年在麦当劳的下单时间，鉴定成一种打工人作息人格。
 
+**在线试玩** → <https://peterfeng1030-dot.github.io/mcd-chrono/>
+六道题，二十秒出结果，不用装 Python，也不用申请 Token。
+
 <img src="docs/assets/persona-wall.png" width="100%" alt="八种麦门作息人格卡">
 
 八种人格、八份样例，全部能用 `--demo` 离线复现——上面每张卡都是这个仓库真实跑出来的输出，
