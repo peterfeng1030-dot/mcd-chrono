@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>麦门作息鉴定 · 你是哪种人</title>
+<meta name="description" content="六道题，二十秒，算出你是八种麦门作息里的哪一种。">
+<style>
+:root{
+  --yellow:#FFC72C; --red:#DA291C; --bg:#141414; --card:#1E1E1E;
+  --line:#2A2A2A; --text:#F5F1E8; --dim:#8C8478; --dimmer:#5F594F;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  display:flex;justify-content:center;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+#app{width:100%;max-width:520px;padding:24px 22px 36px;position:relative}
+
+.brand{font-size:12px;letter-spacing:4px;color:var(--dim);margin-bottom:6px}
+.brand-sub{font-size:12px;letter-spacing:1px;color:var(--dimmer);margin-bottom:26px}
+
+/* ---------- 进度 ---------- */
+.prog{height:2px;background:var(--line);border-radius:1px;overflow:hidden;margin-bottom:26px}
+.prog i{display:block;height:100%;width:0;background:var(--yellow);transition:width .35s ease}
+
+/* ---------- 题 ---------- */
+.q{display:none}
+.q.on{display:block;animation:in .32s ease both}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.q-no{font-size:12px;letter-spacing:2px;color:var(--dimmer);margin-bottom:10px}
+.q-t{font-size:23px;font-weight:800;line-height:1.4;letter-spacing:-.3px;margin-bottom:6px}
+.q-hint{font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.6}
+
+.opt{
+  display:flex;align-items:center;gap:12px;
+  width:100%;text-align:left;cursor:pointer;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:14px 16px;margin-bottom:9px;
+  color:var(--text);font-size:15.5px;font-family:inherit;
+  transition:border-color .18s,background .18s,transform .12s;
+}
+.opt:active{transform:scale(.985)}
+.opt .dot{
+  width:18px;height:18px;border-radius:50%;flex:none;
+  border:1.5px solid #3C3C3C;display:flex;align-items:center;justify-content:center;
+  transition:border-color .18s,background .18s;
+}
+.opt .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:transparent;transition:background .18s}
+.opt.sel{border-color:var(--yellow);background:#241F14}
+.opt.sel .dot{border-color:var(--yellow)}
+.opt.sel .dot::after{background:var(--yellow)}
+.opt .txt{flex:1;line-height:1.4}
+.opt .sub{display:block;font-size:12px;color:var(--dimmer);margin-top:3px}
+
+.next{
+  width:100%;border:none;border-radius:12px;padding:16px;
+  background:var(--yellow);color:#141414;
+  font-size:16px;font-weight:800;font-family:inherit;letter-spacing:1px;
+  cursor:pointer;margin-top:8px;opacity:.35;pointer-events:none;transition:opacity .2s;
+}
+.next.ready{opacity:1;pointer-events:auto}
+
+/* ---------- 结果 ---------- */
+#result{display:none}
+#result.on{display:block;animation:in .4s ease both}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 22px;position:relative;overflow:hidden;
+}
+.card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--yellow),var(--red));
+}
+.r-top{font-size:11px;letter-spacing:3px;color:var(--dimmer);margin-bottom:20px}
+.r-emoji{font-size:52px;line-height:1;margin-bottom:14px}
+.r-title{font-size:31px;font-weight:900;line-height:1.25;letter-spacing:-.5px;margin-bottom:16px}
+.r-desc{font-size:15px;line-height:1.85;color:#C9C2B6}
+.r-desc p{margin-bottom:6px}
+.r-verdict{
+  margin-top:20px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:19px;font-weight:800;line-height:1.6;color:var(--yellow);letter-spacing:-.2px;
+}
+.r-foot{
+  margin-top:18px;font-size:11.5px;line-height:1.7;color:var(--dimmer);
+}
+.act{display:flex;gap:10px;margin-top:18px}
+.act button{
+  flex:1;border:1px solid var(--line);border-radius:12px;padding:15px;
+  background:transparent;color:var(--text);
+  font-size:14.5px;font-family:inherit;cursor:pointer;
+}
+.act .main{background:var(--yellow);border-color:var(--yellow);color:#141414;font-weight:800}
+
+.after{
+  margin-top:26px;padding:20px 18px;border:1px solid var(--line);border-radius:14px;
+  font-size:13.5px;line-height:1.85;color:var(--dim);
+}
+.after b{color:var(--text);font-weight:700}
+.after a{color:var(--yellow);text-decoration:none;border-bottom:1px solid rgba(255,199,44,.4)}
+.disc{margin-top:22px;font-size:11px;line-height:1.7;color:#4A453D}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="brand">MCD CHRONOTYPE</div>
+  <div class="brand-sub">麦门作息鉴定所 · 网页体验版</div>
+  <div class="prog"><i id="bar"></i></div>
+
+  <div id="quiz">
+    <div class="q on" data-q="0">
+      <div class="q-no">01 / 06</div>
+      <div class="q-t">你一般什么时候点麦当劳？</div>
+      <div class="q-hint">可以多选，选得越准，结果越准</div>
+      <button class="opt" data-k="slot" data-v="早"><span class="dot"></span><span class="txt">早餐<span class="sub">5:30 – 9:30</span></span></button>
+      <button class="opt" data-k="slot" data-v="午"><span class="dot"></span><span class="txt">中午<span class="sub">10:00 – 14:00</span></span></button>
+      <button class="opt" data-k="slot" data-v="下午茶"><span class="dot"></span><span class="txt">下午<span class="sub">14:00 – 17:00</span></span></button>
+      <button class="opt" data-k="slot" data-v="晚"><span class="dot"></span><span class="txt">晚上<span class="sub">17:00 – 21:00</span></span></button>
+      <button class="opt" data-k="slot" data-v="夜"><span class="dot"></span><span class="txt">深夜<span class="sub">21:00 以后，或凌晨</span></span></button>
+      <button class="next" id="next0">下一步</button>
+    </div>
+
+    <div class="q" data-q="1">
+      <div class="q-no">02 / 06</div>
+      <div class="q-t">大概多久点一次？</div>
+      <div class="q-hint">在麦当劳，不是在所有餐厅</div>
+      <button class="opt" data-k="freq" data-v="0.8"><span class="dot"></span><span class="txt">一个月不到一次</span></button>
+      <button class="opt" data-k="freq" data-v="2.5"><span class="dot"></span><span class="txt">一个月两三次</span></button>
+      <button class="opt" data-k="freq" data-v="6"><span class="dot"></span><span class="txt">一周一两次</span></button>
+      <button class="opt" data-k="freq" data-v="14"><span class="dot"></span><span class="txt">一周三四次</span></button>
+      <button class="opt" data-k="freq" data-v="25"><span class="dot"></span><span class="txt">几乎天天</span></button>
+    </div>
+
+    <div class="q" data-q="2">
+      <div class="q-no">03 / 06</div>
+      <div class="q-t">点的时候，选得固定吗？</div>
+      <div class="q-hint">想想你打开菜单之后的那三秒</div>
+      <button class="opt" data-k="repeat" data-v="0.65"><span class="dot"></span><span class="txt">永远那一两样</span><span class="sub">不用看菜单</span></button>
+      <button class="opt" data-k="repeat" data-v="0.3"><span class="dot"></span><span class="txt">有几样轮着点</span></button>
+      <button class="opt" data-k="repeat" data-v="0.12"><span class="dot"></span><span class="txt">每次都想试试新的</span></button>
+    </div>
+
+    <div class="q" data-q="3">
+      <div class="q-no">04 / 06</div>
+      <div class="q-t">时间准不准？</div>
+      <div class="q-hint">指你每次下单的时刻，差多少</div>
+      <button class="opt" data-k="steady" data-v="0"><span class="dot"></span><span class="txt">几乎同一个点</span><span class="sub">前后十几分钟</span></button>
+      <button class="opt" data-k="steady" data-v="1"><span class="dot"></span><span class="txt">大概那个时段</span><span class="sub">前后半小时</span></button>
+      <button class="opt" data-k="steady" data-v="2"><span class="dot"></span><span class="txt">看当天忙不忙</span><span class="sub">差一两个小时</span></button>
+    </div>
+
+    <div class="q" data-q="4">
+      <div class="q-no">05 / 06</div>
+      <div class="q-t">周末和工作日比？</div>
+      <div class="q-hint">哪边点得更多</div>
+      <button class="opt" data-k="weekend" data-v="0.75"><span class="dot"></span><span class="txt">基本只在周末</span><span class="sub">工作日几乎不碰</span></button>
+      <button class="opt" data-k="weekend" data-v="0.15"><span class="dot"></span><span class="txt">工作日更多</span></button>
+      <button class="opt" data-k="weekend" data-v="0.3"><span class="dot"></span><span class="txt">差不多</span></button>
+    </div>
+
+    <div class="q" data-q="5">
+      <div class="q-no">06 / 06</div>
+      <div class="q-t">外卖还是到店？</div>
+      <div class="q-hint">麦乐送，还是自己去门店</div>
+      <button class="opt" data-k="delivery" data-v="0.85"><span class="dot"></span><span class="txt">基本都是外卖</span></button>
+      <button class="opt" data-k="delivery" data-v="0.1"><span class="dot"></span><span class="txt">基本都是到店</span></button>
+      <button class="opt" data-k="delivery" data-v="0.5"><span class="dot"></span><span class="txt">一半一半</span></button>
+    </div>
+  </div>
+
+  <div id="result">
+    <div class="card">
+      <div class="r-top">MCD CHRONOTYPE REPORT</div>
+      <div class="r-emoji" id="rEmoji">🍔</div>
+      <div class="r-title" id="rTitle"></div>
+      <div class="r-desc" id="rDesc"></div>
+      <div class="r-verdict" id="rVerdict"></div>
+    </div>
+    <div class="act">
+      <button class="main" id="again">重测一次</button>
+      <button id="copy">复制结果</button>
+    </div>
+    <div class="after">
+      这是<b>网页体验版</b>，靠六个问题估算。<br>
+      真版接你麦当劳账号，读全部历史订单，算出五项时段占比、时间离散度、单品集中度这些硬指标，准得多。<br>
+      开源在 GitHub，搜 <b>mcd-chrono</b>，或者
+      <a href="https://github.com/peterfeng1030-dot/mcd-chrono" target="_blank" rel="noopener">点这里直接过去</a>。
+    </div>
+    <div class="disc">
+      仅供娱乐，不构成任何健康或饮食建议。本项目为麦当劳程序员创意开发大赛参赛作品，非麦当劳官方产品。
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var T = {t7:0.40, t4:0.25, t3r:0.35, t3s:45, t2:0.45, t9:75, t5:0.40, t6:0.50, t1t:0.30, t8:1.5};
+
+  var P = [
+    {k:"P1", e:"🍔", t:"麦门初恋体质",
+     c:function(f){return f.t7 >= T.t7;},
+     d:["点开菜单，你从不浏览，直接搜索那个名字。","一年到头，购物车里都是同一份心动。","这不是懒得换，是认定了。"],
+     v:"菜单换了一轮又一轮，你的心动从没换过。"},
+    {k:"P2", e:"🌙", t:"深夜麦门守护者",
+     c:function(f){return f.t4 >= T.t4;},
+     d:["城市慢慢安静下来的时候，你的订单亮了。","加过的班、追过的剧、睡不着的心事，都有麦当劳陪你收尾。"],
+     v:"城市睡了，你的麦乐送还醒着。"},
+    {k:"P3", e:"🌅", t:"晨间通勤麦",
+     c:function(f){return f.t3r >= T.t3r && f.t3s < T.t3s;},
+     d:["闹钟响第二遍之前，你已经想好了今天的早餐。","固定的时间、固定的搭配，一天从确定感开始。"],
+     v:"地铁还没到站，你的猪柳蛋已经在路上了。"},
+    {k:"P4", e:"⏰", t:"卡点特种兵",
+     c:function(f){return f.t2 >= T.t2 && f.t9 < T.t9;},
+     d:["你的午休像瑞士钟表，误差以分钟计。","工位、门店、餐盘，三点一线零废话。"],
+     v:"卡点这件事，你对麦当劳比对打卡机认真。"},
+    {k:"P5", e:"🛋️", t:"麦乐送头号收件人",
+     c:function(f){return f.t5 >= T.t5 && f.t6 >= T.t6;},
+     d:["工作日你和麦当劳保持礼貌距离，周末才舍得开门。","门铃一响，你的周末就位了。","从第一餐到宵夜，都有人负责送上门。"],
+     v:"你周末的第一个访客是骑手，最后一个，也是。"},
+    {k:"P6", e:"☕", t:"下午茶哲学家",
+     c:function(f){return f.t1t >= T.t1t;},
+     d:["正午的拥挤属于别人，你偏爱下午三点的空档。","在会议与会议的缝隙里，给自己留一个喘息的位置。"],
+     v:"只有下午茶的时间，才真正属于你自己。"},
+    {k:"P7", e:"🍀", t:"麦门幸运儿",
+     c:function(f){return f.t8 < T.t8;},
+     d:["你一年到不了几次麦当劳，但每次都记得。","低频不代表不真诚，你的每一次光临都带着新鲜感。"],
+     v:"一年来不了几次，但每次都是真心的。"},
+    {k:"P8", e:"🌀", t:"全麦自由人",
+     c:function(){return true;},
+     d:["你的订单时间散落全谱系：清晨有、深夜有、工作日有、周末也有。","不被时段定义，想吃就是唯一指令。"],
+     v:"想吃就吃，你的胃不看日历。"}
+  ];
+
+  var ans = {slot:[], freq:null, repeat:null, steady:null, weekend:null, delivery:null};
+  var step = 0;
+  var bar = document.getElementById("bar");
+  var qs = document.querySelectorAll(".q");
+
+  function show(i){
+    for (var j=0;j<qs.length;j++) qs[j].classList.toggle("on", j===i);
+    step = i;
+    bar.style.width = (i/6*100) + "%";
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  function advance(){
+    if (step < 5) show(step+1);
+    else finish();
+  }
+
+  // 第一题多选
+  document.querySelectorAll('.q[data-q="0"] .opt').forEach(function(b){
+    b.addEventListener("click", function(){
+      var v = b.dataset.v, i = ans.slot.indexOf(v);
+      if (i >= 0) ans.slot.splice(i,1); else ans.slot.push(v);
+      b.classList.toggle("sel");
+      document.getElementById("next0").classList.toggle("ready", ans.slot.length > 0);
+    });
+  });
+  document.getElementById("next0").addEventListener("click", function(){
+    if (ans.slot.length) advance();
+  });
+
+  // 2-6 单选，点完自动下一题
+  for (var i=1;i<qs.length;i++){
+    (function(idx){
+      qs[idx].querySelectorAll(".opt").forEach(function(b){
+        b.addEventListener("click", function(){
+          qs[idx].querySelectorAll(".opt").forEach(function(x){x.classList.remove("sel");});
+          b.classList.add("sel");
+          ans[b.dataset.k] = parseFloat(b.dataset.v);
+          setTimeout(advance, 190);
+        });
+      });
+    })(i);
+  }
+
+  function features(){
+    var n = ans.slot.length || 1;
+    var f = {};
+    // 时段均分：只选一个 → 该项 1.0
+    f.t1t = ans.slot.indexOf("下午茶") >= 0 ? 1/n : 0;
+    f.t4  = ans.slot.indexOf("夜") >= 0 ? 1/n : 0;
+    f.t3r = ans.slot.indexOf("早") >= 0 ? 1/n : 0;
+
+    // 时间准度 → t3_std / t9
+    var s = ans.steady;
+    var std  = [15, 40, 80][s];
+    var t9   = [18, 55, 130][s];
+    var punch= [0.75, 0.5, 0.3][s];
+    f.t3s = std; f.t9 = t9;
+
+    // 午市卡点率：没选中午 → 0；只在周末点 → 工作日基数小，按 1-t5 打折
+    f.t2 = ans.slot.indexOf("午") >= 0 ? punch * (1 - ans.weekend) : 0;
+
+    f.t5 = ans.weekend;
+    f.t6 = ans.delivery;
+    f.t7 = ans.repeat;
+    f.t8 = ans.freq;
+    return f;
+  }
+
+  function finish(){
+    bar.style.width = "100%";
+    var f = features(), hit = P[P.length-1];
+    for (var i=0;i<P.length;i++){ if (P[i].c(f)){ hit = P[i]; break; } }
+
+    document.getElementById("rEmoji").textContent = hit.e;
+    document.getElementById("rTitle").textContent = hit.t;
+    document.getElementById("rDesc").innerHTML = hit.d.map(function(x){return "<p>"+x+"</p>";}).join("");
+    document.getElementById("rVerdict").textContent = hit.v;
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("result").classList.add("on");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  document.getElementById("again").addEventListener("click", function(){
+    ans = {slot:[], freq:null, repeat:null, steady:null, weekend:null, delivery:null};
+    document.querySelectorAll(".opt").forEach(function(b){b.classList.remove("sel");});
+    document.getElementById("next0").classList.remove("ready");
+    document.getElementById("result").classList.remove("on");
+    document.getElementById("quiz").style.display = "block";
+    show(0);
+  });
+
+  document.getElementById("copy").addEventListener("click", function(){
+    var txt = "我在麦当劳是「" + document.getElementById("rTitle").textContent + "」\n"
+            + document.getElementById("rVerdict").textContent + "\n"
+            + "八种麦门作息，你是哪种？GitHub 搜 mcd-chrono";
+    var btn = this;
+    function ok(){ btn.textContent = "已复制"; setTimeout(function(){btn.textContent="复制结果";},1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok, function(){ fallback(txt, ok); });
+    } else { fallback(txt, ok); }
+  });
+
+  function fallback(txt, cb){
+    var ta = document.createElement("textarea");
+    ta.value = txt; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); cb(); } catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // 暴露给自测脚本
+  window.__chrono = {features:features, P:P, finish:finish, ans:ans};
+  bar.style.width = "0%";
+})();
+</script>
+</body>
+</html>
